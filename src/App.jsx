@@ -22,9 +22,11 @@ function App() {
 
   return (
     <>
-      <p>{JSON.stringify(pedidosList[0])}</p>
+      <p>{JSON.stringify(pedidosList)}</p>
     </>
   )
 }
 
 export default App
+SHEET ID = "https://docs.google.com/spreadsheets/d/1gLgpkSABsg49X4ZkBj_nxL0Ufu25j1XcPVqAqA-2JlI/edit?gid=366139392#gid=366139392"
+RANGE = "A2:J"
