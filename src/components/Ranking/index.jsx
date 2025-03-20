@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import { RankingCard } from "./RankingCard";
 
 export const Ranking = () => {
   const { pedidosList } = useContext(PedidoContext);
@@ -15,7 +16,7 @@ export const Ranking = () => {
   const pedidoCount = usePedidoCount(pedidosList, dataFormatada);
 
   const pedidoSorted = Object.entries(pedidoCount).sort((a, b) => b[1] - a[1]);
-  console.log(pedidoSorted);
+  console.log(pedidoSorted);''
 
   const handleChange = (date) => {
     setDataPedido(date);
@@ -30,10 +31,8 @@ export const Ranking = () => {
         locale={ptBR}
       />
       <ul>
-        {pedidoSorted.map((item, index) => (
-          <li key={index}>
-            {item[0]}: {item[1]}
-          </li>
+        {pedidoSorted.map((item) => (
+          <RankingCard key={item.id} item={item}/>
         ))}
       </ul>
     </div>
