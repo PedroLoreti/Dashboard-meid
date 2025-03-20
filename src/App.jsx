@@ -19,10 +19,17 @@ function App() {
     
   }, [pedidosList])
 
-
   return (
     <>
+<<<<<<< Updated upstream
       <p>{JSON.stringify(pedidosList)}</p>
+=======
+      <ul>
+        {pedidosList.map((pedido, index) => (
+          <li key={index}>{JSON.stringify(pedido)}</li>
+        ))}
+      </ul>
+>>>>>>> Stashed changes
     </>
   )
 }
