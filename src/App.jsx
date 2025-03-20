@@ -22,13 +22,19 @@ function App() {
   return (
     <>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <p>{JSON.stringify(pedidosList)}</p>
 =======
+=======
+>>>>>>> Stashed changes
       <ul>
         {pedidosList.map((pedido, index) => (
           <li key={index}>{JSON.stringify(pedido)}</li>
         ))}
       </ul>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </>
   )
