@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { RankingCard } from "./RankingCard";
-import "./style.module.scss"
+import styles from "./style.module.scss"
 
 export const Ranking = () => {
   const { pedidosList } = useContext(PedidoContext);
@@ -24,15 +24,17 @@ export const Ranking = () => {
   };
 
   return (
-    <div>
+    <div className={styles.containerDiv}>
       <DatePicker
         selected={dataPedido}
         onChange={handleChange}
         dateFormat="dd/MM/yyyy"
         locale={ptBR}
-        className={styles.datePicker}
+        className={styles.datepicker}
+        popperClassName={styles.customDatepicker}
+        
       />
-      <ul>
+      <ul className={styles.containerMain}>
         {pedidoSorted.map((item) => (
           <RankingCard key={item.id} item={item}/>
         ))}

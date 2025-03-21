@@ -1,9 +1,10 @@
-
-export const RankingCard = (item) => {
+import styles from "./style.module.scss"
+export const RankingCard = ({item}) => {
     
     return (
-        <>
-            <p>{item[0]} : {item[1]}</p>
-        </>
+        <li>
+            <p className={styles.paragraph}>{item[0]}</p>
+            <span>{item[1]}</span>
+        </li>
     )
 }
