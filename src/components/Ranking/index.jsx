@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { RankingCard } from "./RankingCard";
+import "./style.module.scss"
 
 export const Ranking = () => {
   const { pedidosList } = useContext(PedidoContext);
@@ -29,6 +30,7 @@ export const Ranking = () => {
         onChange={handleChange}
         dateFormat="dd/MM/yyyy"
         locale={ptBR}
+        className={styles.datePicker}
       />
       <ul>
         {pedidoSorted.map((item) => (
