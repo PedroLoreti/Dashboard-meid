@@ -1,15 +1,27 @@
-.containerMain {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    align-items: center;
-    margin: 50px 0 100px 0;
+.containerList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 50px 0 100px 0;
 }
 
 .datepicker {
-    background-color: white;
-    border-radius: 4px;
-    font-size: 18px;
-    margin: 100px 100px 0 100px;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 18px;
+  margin: 100px 100px 0 100px;
 }
 
+.containerDiv {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.containerMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(15.625rem, 11.574rem + 21.605vw, 37.5rem);
+}

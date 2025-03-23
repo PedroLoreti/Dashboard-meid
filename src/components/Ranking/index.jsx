@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { RankingCard } from "./RankingCard";
-import styles from "./style.module.scss"
+import styles from "./style.module.scss";
 
 export const Ranking = () => {
   const { pedidosList } = useContext(PedidoContext);
@@ -17,7 +17,8 @@ export const Ranking = () => {
   const pedidoCount = usePedidoCount(pedidosList, dataFormatada);
 
   const pedidoSorted = Object.entries(pedidoCount).sort((a, b) => b[1] - a[1]);
-  console.log(pedidoSorted);''
+  console.log(pedidoSorted);
+  ("");
 
   const handleChange = (date) => {
     setDataPedido(date);
@@ -25,20 +26,21 @@ export const Ranking = () => {
 
   return (
     <div className={styles.containerDiv}>
-      <DatePicker
-        selected={dataPedido}
-        onChange={handleChange}
-        dateFormat="dd/MM/yyyy"
-        locale={ptBR}
-        className={styles.datepicker}
-        popperClassName={styles.customDatepicker}
-        
-      />
-      <ul className={styles.containerMain}>
-        {pedidoSorted.map((item) => (
-          <RankingCard key={item.id} item={item}/>
-        ))}
-      </ul>
+      <div className={styles.containerMain}>
+        <DatePicker
+          selected={dataPedido}
+          onChange={handleChange}
+          dateFormat="dd/MM/yyyy"
+          locale={ptBR}
+          className={styles.datepicker}
+          popperClassName={styles.customDatepicker}
+        />
+        <ul className={styles.containerList}>
+          {pedidoSorted.map((item, index) => (
+            <RankingCard key={item.id} item={item} index={index} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

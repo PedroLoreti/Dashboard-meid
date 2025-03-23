@@ -1,10 +1,12 @@
+import { Header } from "./components/Header";
 import { Ranking } from "./components/Ranking";
-import "./style/reset.scss"
+import "./style/reset.scss";
 function App() {
   return (
-    <>
+    <main>
+      <Header />
       <Ranking />
-    </>
+    </main>
   );
 }
 
