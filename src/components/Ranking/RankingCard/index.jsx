@@ -4,7 +4,7 @@ export const RankingCard = ({item}) => {
     return (
         <li>
             <p className={styles.paragraph}>{item[0]}</p>
-            <span>{item[1]}</span>
+            <span className={styles.numPedidos}>{item[1]}</span>
         </li>
     )
 }
