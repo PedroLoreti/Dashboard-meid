@@ -7,8 +7,10 @@ import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { RankingCard } from "./RankingCard";
 import styles from "./style.module.scss";
+import { useNavigate } from "react-router-dom";
 
 export const Ranking = () => {
+  const navigate = useNavigate();
   const { pedidosList } = useContext(PedidoContext);
   const [dataPedido, setDataPedido] = useState(null);
   const dataFormatada = dataPedido ? format(dataPedido, "dd/MM/yyyy") : null;
@@ -24,8 +26,12 @@ export const Ranking = () => {
     setDataPedido(date);
   };
 
+  
+
   return (
     <div className={styles.containerDiv}>
+      <h1 className={styles.titleRanking}>Ranking Pedidos</h1>
+
       <div className={styles.containerMain}>
         <DatePicker
           selected={dataPedido}
@@ -35,6 +41,7 @@ export const Ranking = () => {
           className={styles.datepicker}
           popperClassName={styles.customDatepicker}
         />
+        <button onClick={() => navigate("/")}>X</button>
         <ul className={styles.containerList}>
           {pedidoSorted.map((item, index) => (
             <RankingCard key={item.id} item={item} index={index} />

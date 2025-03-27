@@ -1,12 +1,12 @@
 import { Header } from "./components/Header";
-import { Ranking } from "./components/Ranking";
-import "./style/reset.scss";
+import { RoutesMain } from "./routes/RoutesMain";
+import "./style/index.scss";
 function App() {
   return (
-    <main>
+    <>
       <Header />
-      <Ranking />
-    </main>
+      <RoutesMain />
+    </>
   );
 }
 
