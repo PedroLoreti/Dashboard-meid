@@ -11,10 +11,7 @@ function App() {
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <Container>
-        <Header />
-        <button onClick={toggleTheme}>
-          {isDarkMode ? "Light Mode" : "Dark Mode"}
-        </button>
+        <Header toggleTheme={toggleTheme}/>
         <RoutesMain />
       </Container>
     </ThemeProvider>

@@ -1,0 +1,15 @@
+.containerDashboard {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.containerList {
+    display: flex;
+
+    background-color: gray;
+}
+
+li {
+    color: white;
+}

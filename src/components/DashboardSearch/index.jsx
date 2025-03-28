@@ -8,6 +8,8 @@ import { useContext } from "react";
 import { PedidoContext } from "../../providers/PedidoContext";
 import { useFilterDashboard } from "../../hooks/useFilterDashboard";
 import { useNavigate } from "react-router-dom";
+import styles from "./style.module.scss";
+
 export const DashboardSearch = () => {
   const {
     register,
@@ -39,25 +41,27 @@ export const DashboardSearch = () => {
     <div>
       <h2>Dashboard</h2>
       <button onClick={() => navigate("/")}>X</button>
+      <div className={styles.containerDashboard}>
+        
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <label htmlFor="name">Nome do Separador</label>
+            <input type="text" id="name" {...register("name")} />
+          </div>
+          <button type="submit">Pesquisar</button>
+        </form>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="name">Nome do Separador</label>
-          <input type="text" id="name" {...register("name")} />
-        </div>
-        <button type="submit">Pesquisar</button>
-      </form>
-
-      <DatePicker
-        selected={tempDataPedido}
-        onChange={handleChange}
-        dateFormat="dd/MM/yyyy"
-        locale={ptBR}
-      />
+        <DatePicker
+          selected={tempDataPedido}
+          onChange={handleChange}
+          dateFormat="dd/MM/yyyy"
+          locale={ptBR}
+        />
+      </div>
 
       <ul>
         {filteredData.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li key={index}>{item[0]} {item[1]}   \\\\\\    {item[2]} {item[3]} {item[4]} {item[5]} {item[6]} {item[7]} {item[8]} {item[9]}</li>
         ))}
       </ul>
     </div>

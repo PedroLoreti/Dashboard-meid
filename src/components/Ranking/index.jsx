@@ -8,9 +8,12 @@ import ptBR from "date-fns/locale/pt-BR";
 import { RankingCard } from "./RankingCard";
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../providers/ThemeContext";
+
 
 export const Ranking = () => {
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme()
   const { pedidosList } = useContext(PedidoContext);
   const [dataPedido, setDataPedido] = useState(null);
   const dataFormatada = dataPedido ? format(dataPedido, "dd/MM/yyyy") : null;
@@ -26,11 +29,9 @@ export const Ranking = () => {
     setDataPedido(date);
   };
 
-  
-
   return (
     <div className={styles.containerDiv}>
-      <h1 className={styles.titleRanking}>Ranking Pedidos</h1>
+      <h1 className={` ${isDarkMode ? "title-white" : "title-black"} ${styles.titleRanking}`}>Ranking Pedidos</h1>
 
       <div className={styles.containerMain}>
         <DatePicker
