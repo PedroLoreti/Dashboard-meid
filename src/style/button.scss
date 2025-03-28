@@ -1,14 +1,20 @@
 .button {
-  background-color: green;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  font-size: 16px;
-  border-radius: 5px;
+  padding: 17px 40px;
+  border-radius: 50px;
   cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  font-weight: 700;
 }
 
 .button:hover {
-  background-color: darkgreen;
-
+  letter-spacing: 3px;
+  background-color: #44A246;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #44A246 0px 7px 29px 0px;
 }

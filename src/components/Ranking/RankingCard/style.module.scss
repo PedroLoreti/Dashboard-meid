@@ -4,11 +4,11 @@ li {
   justify-content: space-between;
   color: white;
   gap: 1rem;
-  
 }
 
 .paragraph,
 .numPedidos {
   font-size: clamp(0.875rem, 0.806rem + 0.37vw, 1.25rem);
   font-family: "Inter", sans-serif;
+  color: #000;
 }

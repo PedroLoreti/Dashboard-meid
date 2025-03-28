@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import ptBR from "date-fns/locale/pt-BR";
 import { format } from "date-fns";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { PedidoContext } from "../../providers/PedidoContext";
 import { useFilterDashboard } from "../../hooks/useFilterDashboard";
