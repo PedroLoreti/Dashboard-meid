@@ -6,11 +6,18 @@ export const RankingCard = ({ item, index }) => {
    index === 0 ? "1° " : index === 1 ? "2° " : index === 2 ? "3° " : "";
 
   const { isDarkMode } = useTheme()
+  const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
+  const borderClass = `${isDarkMode ? "background-black" : "background-white"}`;
+
+  const mediaColor = `${item[1] >= 30 ? "green" : "red"}`
 
   return (
     <li>
-      <p className={`${isDarkMode ? "title-white" : "title-black" } ${styles.paragraph}`}>{item[0]}</p>
-      <span className={`${isDarkMode ? "title-white" : "title-black" } ${styles.numPedidos}`}>{item[1]}</span>
+      <div className={`${borderClass} ${styles.containerCard}`}>
+        <span className={`${titleClass} ${styles.position}`}>{position}</span>
+        <p className={`${titleClass} ${styles.paragraph}`}>{item[0]}</p>
+        <span className={`${mediaColor} ${styles.numPedidos}`}>{item[1]}</span>
+      </div>
     </li>
   );
 };

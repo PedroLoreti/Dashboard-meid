@@ -4,12 +4,15 @@ import { useTheme } from "../../providers/ThemeContext";
 
 export const MainPage = () => {
   const navigate = useNavigate();
-  const { isDarkMode } = useTheme()
+  const { isDarkMode } = useTheme();
+  const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
 
   return (
     <div className={styles.container}>
-      <div className={styles.typewriter}>
-        <h1 className={ `${ isDarkMode ? "title-white" : "title-black" } ${styles.title1}`}>Welcome to Dime Dashboard</h1>
+      <div className="typewriter">
+        <h1 className={`${titleClass} ${styles.title1}`}>
+          Welcome to Dime Dashboard
+        </h1>
       </div>
       <div className={styles.containerButton}>
         <button onClick={() => navigate("/Ranking")} className="button">

@@ -7,12 +7,11 @@ import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { RankingCard } from "./RankingCard";
 import styles from "./style.module.scss";
-import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../providers/ThemeContext";
 
 
 export const Ranking = () => {
-  const navigate = useNavigate();
+  
   const { isDarkMode } = useTheme()
   const { pedidosList } = useContext(PedidoContext);
   const [dataPedido, setDataPedido] = useState(null);
@@ -20,7 +19,7 @@ export const Ranking = () => {
   console.log(dataFormatada);
 
   const pedidoCount = usePedidoCount(pedidosList, dataFormatada);
-
+  const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
   const pedidoSorted = Object.entries(pedidoCount).sort((a, b) => b[1] - a[1]);
   console.log(pedidoSorted);
   ("");
@@ -31,18 +30,23 @@ export const Ranking = () => {
 
   return (
     <div className={styles.containerDiv}>
-      <h1 className={` ${isDarkMode ? "title-white" : "title-black"} ${styles.titleRanking}`}>Ranking Pedidos</h1>
-
+      <h1 className={` ${titleClass} ${styles.titleRanking}`}>Ranking Pedidos</h1>
       <div className={styles.containerMain}>
-        <DatePicker
+        
+
+        <div className={styles.containerDate}>
+          <label htmlFor="date" className={` ${titleClass} ${styles.label}`}>Data:</label>
+
+          <DatePicker
           selected={dataPedido}
           onChange={handleChange}
           dateFormat="dd/MM/yyyy"
           locale={ptBR}
           className={styles.datepicker}
-          popperClassName={styles.customDatepicker}
+          placeholderText="dd/mm/yyyy"
         />
-        <button onClick={() => navigate("/")}>X</button>
+        </div>
+
         <ul className={styles.containerList}>
           {pedidoSorted.map((item, index) => (
             <RankingCard key={item.id} item={item} index={index} />

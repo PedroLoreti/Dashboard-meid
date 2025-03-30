@@ -1,12 +1,23 @@
 li {
+  width: 100%;
+}
+
+.containerCard {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  gap: 1rem;
-}
+  align-items: center;
 
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  gap: 1rem;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: rgba(128, 128, 128, 0.404);
+}
 .paragraph,
 .numPedidos {
   font-size: clamp(0.875rem, 0.806rem + 0.37vw, 1.25rem);
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
 }

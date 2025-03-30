@@ -1,7 +1,7 @@
 .containerList {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.6rem;
   align-items: center;
   margin: 50px 0 100px 0;
 }
@@ -10,6 +10,9 @@
   background-color: white;
   border-radius: 4px;
   font-size: 18px;
+  border: none;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2);
+  padding: 10px;
 }
 
 .containerDiv {
@@ -17,7 +20,6 @@
   flex-direction: column;
   align-items: center;
   gap: 3rem;
-  width: 100%;
 }
 
 .containerMain {
@@ -29,7 +31,16 @@
 
 .titleRanking {
   font-size: clamp(1.5rem, 1.315rem + 0.988vw, 2.5rem);
-  color: white;
-  margin-right: 500;
+  font-family: "Roboto Mono", monospace;
+  text-align: center;
+}
+.containerDate {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: clamp(0.875rem, 0.806rem + 0.37vw, 1.25rem);
+  }
 }
 

@@ -14,8 +14,23 @@
 
 .button:hover {
   letter-spacing: 3px;
-  background-color: #44A246;
+  background-color: #44a246;
   color: hsl(0, 0%, 100%);
-  box-shadow: #44A246 0px 7px 29px 0px;
+  box-shadow: #44a246 0px 7px 29px 0px;
 }
 
+.background-white {
+  background-color: white;
+}
+
+.background-black {
+  background-color: rgba(128, 128, 128, 0.404);
+}
+
+.green {
+  color: #20be22;
+}
+
+.red {
+  color: #d41d10;
+}
