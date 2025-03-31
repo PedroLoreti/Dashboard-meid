@@ -7,11 +7,14 @@
   
   img {
     cursor: pointer;
+    width: clamp(17.1rem, 8.155vw + 15.214rem, 25rem);
+    height: auto;
   }
 
   label {
     position: relative;
     bottom: 155px;
+    top: -55px;
     left: clamp(9.5rem, 18vw + 3.4rem, 25rem);
   }
 }
