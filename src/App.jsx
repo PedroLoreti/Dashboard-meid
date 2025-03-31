@@ -24,6 +24,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${(props) => props.theme.background}; /* Aplicando a cor de fundo do tema */
+  transition: background-color 0.3s ease-in-out;
 `;
 
 export default App;
