@@ -14,7 +14,8 @@
   letter-spacing: clamp(0.010rem, -0.027rem + 0.387vw, 0.438rem); /* Adjust as needed */
   line-height: 2rem;
   height: 50px;
-  font-size: clamp(1.438rem, 1.184rem + 1.097vw, 2.5rem);
+  font-size: clamp(1.313rem, 1.029rem + 1.226vw, 2.5rem);
+  font-family: "Roboto Mono", monospace;
 
   animation: 
     typing 1.0s steps(30, end),

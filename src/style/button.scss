@@ -1,5 +1,5 @@
 .button {
-  padding: 17px 40px;
+  padding: 17px clamp(1.25rem, 0.952rem + 1.29vw, 2.5rem);
   border-radius: 50px;
   cursor: pointer;
   border: 0;

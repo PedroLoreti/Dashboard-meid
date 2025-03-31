@@ -23,7 +23,6 @@ export const DashboardSearch = () => {
   const dataFormatada = dataPedido ? format(dataPedido, "dd/MM/yyyy") : null;
   const { pedidosList } = useContext(PedidoContext);
 
-
   const filteredData = useFilterDashboard(pedidosList, dataFormatada, name);
 
   console.log(filteredData);
@@ -38,30 +37,33 @@ export const DashboardSearch = () => {
   };
 
   return (
-    <div>
-      <h2>Dashboard</h2>
-      <button onClick={() => navigate("/")}>X</button>
-      <div className={styles.containerDashboard}>
-        
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label htmlFor="name">Nome do Separador</label>
-            <input type="text" id="name" {...register("name")} />
-          </div>
-          <button type="submit">Pesquisar</button>
-        </form>
+    <div className={styles.containerSearch}>
+      <h2 className={styles.titleDashboard}>Dashboard</h2>
 
-        <DatePicker
-          selected={tempDataPedido}
-          onChange={handleChange}
-          dateFormat="dd/MM/yyyy"
-          locale={ptBR}
-        />
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.containerName}>
+          <label htmlFor="name">Nome do Separador:</label>
+          <input type="text" id="name" {...register("name")} />
+        </div>
+
+        <div className={styles.containerDate}>
+          <label htmlFor="date">Data:</label>
+          <DatePicker
+            selected={tempDataPedido}
+            onChange={handleChange}
+            dateFormat="dd/MM/yyyy"
+            locale={ptBR}
+            className={styles.datePicker}
+          />
+        </div>
+        <button type="submit" className={styles.buttonSearch}>
+          Pesquisar
+        </button>
+      </form>
 
       <ul>
         {filteredData.map((item, index) => (
-          <li key={index}>{item[0]} {item[1]}   \\\\\\    {item[2]} {item[3]} {item[4]} {item[5]} {item[6]} {item[7]} {item[8]} {item[9]}</li>
+          <li key={index}>{item}</li>
         ))}
       </ul>
     </div>
