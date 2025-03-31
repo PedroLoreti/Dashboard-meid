@@ -30,8 +30,6 @@ export const DashboardSearch = () => {
   const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
   const borderContainer = `${isDarkMode ? "border-container-white" : "border-container-black"}`;
   const border = `${isDarkMode ? "border-white" : "border-black"}`;
-  
-  console.log(filteredData);
 
   const onSubmit = (data) => {
     setName(data.name);

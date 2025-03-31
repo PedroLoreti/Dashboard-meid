@@ -16,12 +16,10 @@ export const Ranking = () => {
   const { pedidosList } = useContext(PedidoContext);
   const [dataPedido, setDataPedido] = useState(null);
   const dataFormatada = dataPedido ? format(dataPedido, "dd/MM/yyyy") : null;
-  console.log(dataFormatada);
 
   const pedidoCount = usePedidoCount(pedidosList, dataFormatada);
   const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
   const pedidoSorted = Object.entries(pedidoCount).sort((a, b) => b[1] - a[1]);
-  console.log(pedidoSorted);
   ("");
 
   const handleChange = (date) => {
