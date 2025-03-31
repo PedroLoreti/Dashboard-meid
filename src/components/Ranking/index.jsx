@@ -42,7 +42,7 @@ export const Ranking = () => {
           onChange={handleChange}
           dateFormat="dd/MM/yyyy"
           locale={ptBR}
-          className={styles.datepicker}
+          className="input-search"
           placeholderText="dd/mm/yyyy"
         />
         </div>

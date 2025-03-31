@@ -7,8 +7,10 @@ import { useState } from "react";
 import { useContext } from "react";
 import { PedidoContext } from "../../providers/PedidoContext";
 import { useFilterDashboard } from "../../hooks/useFilterDashboard";
-import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../providers/ThemeContext";
 import styles from "./style.module.scss";
+import { IoSearch } from "react-icons/io5";
+
 
 export const DashboardSearch = () => {
   const {
@@ -16,7 +18,7 @@ export const DashboardSearch = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
+  const { isDarkMode } = useTheme()
   const [dataPedido, setDataPedido] = useState();
   const [tempDataPedido, setTempDataPedido] = useState(null);
   const [name, setName] = useState("");
@@ -24,7 +26,11 @@ export const DashboardSearch = () => {
   const { pedidosList } = useContext(PedidoContext);
 
   const filteredData = useFilterDashboard(pedidosList, dataFormatada, name);
-
+  
+  const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
+  const borderContainer = `${isDarkMode ? "border-container-white" : "border-container-black"}`;
+  const border = `${isDarkMode ? "border-white" : "border-black"}`;
+  
   console.log(filteredData);
 
   const onSubmit = (data) => {
@@ -38,34 +44,46 @@ export const DashboardSearch = () => {
 
   return (
     <div className={styles.containerSearch}>
-      <h2 className={styles.titleDashboard}>Dashboard</h2>
+      <h2 className={styles.titleDashboard + " " + titleClass}>Dashboard</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.containerName}>
-          <label htmlFor="name">Nome do Separador:</label>
-          <input type="text" id="name" {...register("name")} />
+          <label htmlFor="name" className={titleClass}>Nome/Pedido:</label>
+          <input type="text" id="name" className="input-search" {...register("name")} placeholder="Nome ou Pedido" />
         </div>
 
         <div className={styles.containerDate}>
-          <label htmlFor="date">Data:</label>
+          <label htmlFor="date" className={titleClass}>Data:</label>
           <DatePicker
             selected={tempDataPedido}
             onChange={handleChange}
             dateFormat="dd/MM/yyyy"
             locale={ptBR}
-            className={styles.datePicker}
+            className="input-search"
+            placeholderText="dd/mm/yyyy"
           />
         </div>
-        <button type="submit" className={styles.buttonSearch}>
-          Pesquisar
+        <button type="submit" className={`${styles.buttonSearch}`}>
+          <IoSearch className={styles.icon}/>
         </button>
       </form>
 
-      <ul>
-        {filteredData.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+      <div className={styles.containerGrid + " " + borderContainer}>
+        <div className={styles.header + " " + titleClass}>
+          <div>Data/Hora</div>
+          <div>Nome do Separador</div>
+          <div>Pedidos</div>
+        </div>
+        <div className={styles.body}>
+          {filteredData.map((item) => (
+            <div key={item._id} className={styles.row + " " + titleClass + " " + border }>
+              <div>{item[0]}</div>
+              <div>{item[1]}</div>
+              <div>{item.slice(2).join(", ")}</div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

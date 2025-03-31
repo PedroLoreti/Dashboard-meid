@@ -28,3 +28,7 @@
   from { width: 0 }
   to { width: 100% }
 }
+
+label {
+  font-size: clamp(0.875rem, 0.806rem + 0.37vw, 1.25rem);
+}
