@@ -10,16 +10,16 @@ export const MainPage = () => {
   return (
     <div className={styles.container}>
       <div className="typewriter">
-        <h1 className={`${titleClass} ${styles.title1}`}>
-          Welcome to Dime Dashboard
+        <h1 className={`${titleClass} title1`}>
+          Welcome to Dime Consultancy
         </h1>
       </div>
       <div className={styles.containerButton}>
         <button onClick={() => navigate("/Ranking")} className="button">
           Ranking
         </button>
-        <button onClick={() => navigate("/Dashboard")} className="button">
-          DashBoard
+        <button onClick={() => navigate("/Registro")} className="button">
+          Registro de Pedidos
         </button>
       </div>
     </div>

@@ -1,5 +1,5 @@
-import { Route, Router, Routes } from "react-router-dom";
-import { Dashboard } from "../pages/Dashboard";
+import { Route, Routes } from "react-router-dom";
+import { Registro } from "../pages/Registro";
 import { MainPage } from "../pages/MainPage";
 import { RankingPage } from "../pages/RankingPage";
 
@@ -8,7 +8,7 @@ export const RoutesMain = () => {
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/Ranking" element={<RankingPage />} />
-      <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/Registro" element={<Registro />} />
       
     </Routes>
   );

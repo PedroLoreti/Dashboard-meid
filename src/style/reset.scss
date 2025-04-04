@@ -109,7 +109,7 @@ section {
 body {
   line-height: 1;
   background-color: var(--gray-4);
-  font-family: "Inter", sans-serif;
+  font-family: "Roboto Mono", monospace;
 }
 ol,
 ul {
@@ -134,9 +134,6 @@ table {
 button {
   cursor: pointer;
 }
-// * {
-//   background-color: #e8e8e8;
-// }
 
 html,
 body {
