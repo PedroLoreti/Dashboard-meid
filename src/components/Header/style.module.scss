@@ -19,3 +19,16 @@
   }
 }
 
+@media (max-width: 435px) {
+  .header {
+    position: relative;
+    gap: 35px;
+
+    label {
+      position: relative;
+      bottom: 0px;
+      top: 0px;
+      left: 0px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Registro } from "../pages/Registro";
+import { Registro } from "../pages/RegistroPage";
 import { MainPage } from "../pages/MainPage";
 import { RankingPage } from "../pages/RankingPage";
 

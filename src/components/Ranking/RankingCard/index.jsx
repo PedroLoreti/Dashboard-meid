@@ -2,8 +2,6 @@ import styles from "./style.module.scss";
 import { useTheme } from "../../../providers/ThemeContext";
 
 export const RankingCard = ({ item, index }) => {
-  const position =
-   index === 0 ? "1° " : index === 1 ? "2° " : index === 2 ? "3° " : "";
 
   const { isDarkMode } = useTheme()
   const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
@@ -14,7 +12,7 @@ export const RankingCard = ({ item, index }) => {
   return (
     <li>
       <div className={`${borderClass} ${styles.containerCard}`}>
-        <span className={`${titleClass} ${styles.position}`}>{position}</span>
+        <span className={`${titleClass} ${styles.position}`}>{index+1}°</span>
         <p className={`${titleClass} ${styles.paragraph}`}>{item[0]}</p>
         <span className={`${mediaColor} ${styles.numPedidos}`}>{item[1]}</span>
       </div>
