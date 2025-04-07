@@ -22,3 +22,5 @@ export const useFilterRegistro = (data, searchDate, searchName) => {
 
   return filteredData;
 };
+
+

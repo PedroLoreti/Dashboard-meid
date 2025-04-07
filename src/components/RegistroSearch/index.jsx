@@ -10,7 +10,8 @@ import { useFilterRegistro } from "../../hooks/useFilterRegistro";
 import { useTheme } from "../../providers/ThemeContext";
 import styles from "./style.module.scss";
 import { IoSearch } from "react-icons/io5";
-
+import { PedidoEndContext } from "../../providers/PedidosEnd"
+import { userFilterFind } from "../../hooks/useFilterFind"
 
 export const RegistroSearch = () => {
   const {
@@ -24,8 +25,14 @@ export const RegistroSearch = () => {
   const [name, setName] = useState("");
   const dataFormatada = dataPedido ? format(dataPedido, "dd/MM/yyyy") : null;
   const { pedidosList } = useContext(PedidoContext);
+  const { pedidosEndList} = useContext(PedidoEndContext)
+
 
   const filteredData = useFilterRegistro(pedidosList, dataFormatada, name);
+
+  userFilterFind(filteredData, pedidosEndList)
+
+  
   
   const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
   const borderContainer = `${isDarkMode ? "border-container-white" : "border-container-black"}`;
