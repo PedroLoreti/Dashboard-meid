@@ -54,19 +54,21 @@ form {
 
 .containerGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: auto;
   margin-bottom: 75px;
 }
 
 .header {
   display: contents; /* Para manter a estrutura do grid */
   font-weight: bold;
+
 }
 
 .header > div {
   text-align: center;
   padding: 10px;
+  border-bottom: 1px solid rgb(145, 145, 145);
 }
 
 .body {
@@ -107,4 +109,62 @@ form {
 .icon {
   width: 25px;
   height: 25px;
+}
+
+@media (max-width: 510px) {
+  .containerGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  .header, .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+      "col1 col2 col3"
+      "col4 col5 col5";
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .header > div:nth-child(1),
+  .row > div:nth-child(1) {
+    grid-area: col1;
+  }
+
+  .header > div:nth-child(2),
+  .row > div:nth-child(2) {
+    grid-area: col2;
+  }
+
+  .header > div:nth-child(3),
+  .row > div:nth-child(3) {
+    grid-area: col3;
+  }
+
+  .header > div:nth-child(4),
+  .row > div:nth-child(4) {
+    grid-area: col4;
+  }
+
+  .header > div:nth-child(5),
+  .row > div:nth-child(5) {
+    grid-area: col5;
+  }
+
+  .header > div,
+  .row > div {
+    text-align: left;
+    padding: 6px;
+  }
+
+  .header > div,
+  .row > div {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    padding: 10px;    
+  }
 }

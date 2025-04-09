@@ -11,7 +11,7 @@ import { useTheme } from "../../providers/ThemeContext";
 import styles from "./style.module.scss";
 import { IoSearch } from "react-icons/io5";
 import { PedidoEndContext } from "../../providers/PedidosEnd"
-import { userFilterFind } from "../../hooks/useFilterFind"
+import { useFilterFind } from "../../hooks/useFilterFind"
 
 export const RegistroSearch = () => {
   const {
@@ -30,7 +30,7 @@ export const RegistroSearch = () => {
 
   const filteredData = useFilterRegistro(pedidosList, dataFormatada, name);
 
-  userFilterFind(filteredData, pedidosEndList)
+  const pedidoComplete = useFilterFind(filteredData, pedidosEndList)
 
   
   
@@ -75,16 +75,20 @@ export const RegistroSearch = () => {
 
       <div className={styles.containerGrid + " " + borderContainer}>
         <div className={styles.header + " " + titleClass}>
-          <div>Data/Hora</div>
+          <div>pedido</div>
           <div>Nome do Separador</div>
-          <div>Pedidos</div>
+          <div>Data Inicio</div>
+          <div>Data Finalizado</div>
+          <div>Total</div>
         </div>
         <div className={styles.body}>
-          {filteredData.map((item) => (
-            <div key={item._id} className={styles.row + " " + titleClass + " " + border }>
-              <div>{item[0]}</div>
-              <div>{item[1]}</div>
-              <div>{item.slice(2).join(", ")}</div>
+          {pedidoComplete.map((item, index) => (
+            <div key={index} className={styles.row + " " + titleClass + " " + border }>
+              <div>{item.codigo}</div>
+              <div>{item.nome}</div>
+              <div>{item.dataInicio}</div>
+              <div>{item.dataFinal}</div>
+              <div>{item.total}</div>
             </div>
           ))}
         </div>
