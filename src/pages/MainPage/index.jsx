@@ -21,6 +21,9 @@ export const MainPage = () => {
         <button onClick={() => navigate("/Registro")} className="button">
           Registro de Pedidos
         </button>
+        <button onClick={() => navigate("/Dashboard")} className="button">
+          Dashboard
+        </button>
       </div>
     </div>
   );

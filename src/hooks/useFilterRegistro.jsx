@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useFilterRegistro = (data, searchDate, searchName) => {
+export const useFilterRegistro = (data, searchDate, searchName = "") => {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {

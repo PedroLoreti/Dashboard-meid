@@ -1,0 +1,27 @@
+.revenue-card {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  
+    &__header {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+  
+    &__amount {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #111;
+    }
+  
+    &__change {
+      font-size: 0.875rem;
+      color: #22c55e;
+      margin-top: 0.25rem;
+    }
+}
+  
