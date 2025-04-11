@@ -1,7 +1,7 @@
 export const useFilterFind = (dataFiltred, pedidoFinalizado) => {
   const pedidosIniciais = {};
 
-  // Junta todos os códigos dos pedidos (de [2] até o final da linha)
+
   dataFiltred.forEach(pedido => {
     const nome = pedido[1];
     const dataInicio = pedido[0];
@@ -23,7 +23,7 @@ export const useFilterFind = (dataFiltred, pedidoFinalizado) => {
 
   const resultado = [];
 
-  // Mesma lógica para os finalizados
+
   pedidoFinalizado.forEach(pedido => {
     const finalData = pedido[0];
 
@@ -58,7 +58,7 @@ export const calcularMediaMinutos = (pedidos) => {
   if (!pedidos.length) return "0min";
 
   const totais = pedidos.map(p => {
-    const match = p.total.match(/\d+/); // pega só os números
+    const match = p.total.match(/\d+/);
     return match ? parseInt(match[0]) : 0;
   });
 
@@ -69,4 +69,15 @@ export const calcularMediaMinutos = (pedidos) => {
   const minutos = Math.round(media % 60);
 
   return horas > 0 ? `${horas}h ${minutos}min` : `${minutos}min`;
+};
+
+export const pedidoMaisDemorado = (pedidos) => {
+  if (!pedidos || pedidos.length === 0) return null;
+
+  return pedidos.reduce((maior, atual) => {
+    const duracaoMaior = parseInt(maior.total?.trim()) || 0;
+    const duracaoAtual = parseInt(atual.total?.trim()) || 0;
+
+    return duracaoAtual > duracaoMaior ? atual : maior;
+  });
 };
