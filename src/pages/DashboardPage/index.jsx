@@ -10,7 +10,9 @@ import { pedidoMaisDemorado } from "../../hooks/useFilterFind"
 import { SearchForm } from "../../components/SearchForm";
 import { useTheme } from "../../providers/ThemeContext";
 import { format } from "date-fns";
+import { BarChartExample } from "../../components/BarCharts"
 import styles from "./style.module.scss";
+
 
 export const DashboardPage = () => {
 
@@ -37,30 +39,36 @@ export const DashboardPage = () => {
 
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h2 className={styles.titleDashboard + " " + titleClass} >Dashboard</h2>
 
             <SearchForm
                 onSubmit={onSubmit}
                 titleClass={titleClass}
                 buttonClass={styles.buttonSearch}
+                allowOrderSearch={false}
             />
+            <div class={styles.cardContainer}>
+                <RevenueCard 
+                    title="Total Pedidos" 
+                    amount={`${pedidoComplete.length} pedidos`} 
+                />
+                <RevenueCard 
+                    title="Media por pedido" 
+                    amount={`${calcularMediaMinutos(pedidoComplete)}`} 
+                />
+                <RevenueCard 
+                    title="Pedido mais demorado" 
+                    amount={
+                    maisDemorado 
+                        ? `#${maisDemorado.codigo} - ${maisDemorado.total}` 
+                        : "Nenhum pedido"
+                    } 
+                />
+            </div>
 
-            <RevenueCard 
-                title="Total Pedidos" 
-                amount={`${pedidoComplete.length} pedidos`} 
-            />
-            <RevenueCard 
-                title="Media por pedido" 
-                amount={`${calcularMediaMinutos(pedidoComplete)}`} 
-            />
-            <RevenueCard 
-                title="Pedido mais demorado" 
-                amount={
-                maisDemorado 
-                    ? `#${maisDemorado.codigo} - ${maisDemorado.total}` 
-                    : "Nenhum pedido"
-                } 
-            />
+
+            <BarChartExample pedidos={pedidoComplete} />
         </div>
+        
   );
 };

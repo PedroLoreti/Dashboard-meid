@@ -8,21 +8,47 @@ import styles from "./style.module.scss";
 export const SearchForm = ({
   onSubmit,
   titleClass,
-  buttonClass
+  buttonClass,
+  allowOrderSearch = true,
 }) => {
-  const { register, handleSubmit, control } = useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm();
+
+  const customSubmit = (data) => {
+    const nomeOuPedido = data.name?.trim() || "";
+
+    if (!allowOrderSearch && /^\d+$/.test(nomeOuPedido)) {
+      setError("name", {
+        type: "manual",
+        message: "A busca por número do pedido não é permitida",
+      });
+      return;
+    }
+
+    clearErrors("name");
+    onSubmit(data);
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(customSubmit)}>
       <div className={styles.containerName}>
-        <label htmlFor="name" className={titleClass}>Nome/Pedido:</label>
+        <label htmlFor="name" className={titleClass}>Nome:</label>
         <input
           type="text"
           id="name"
           className="input-search"
           {...register("name")}
-          placeholder="Nome ou Pedido"
+          placeholder={allowOrderSearch ? "Nome ou Pedido" : "Nome"}
         />
+        {errors.name && (
+          <span className={styles.error}>{errors.name.message}</span>
+        )}
       </div>
 
       <div className={styles.containerDate}>
