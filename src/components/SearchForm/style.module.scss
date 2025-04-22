@@ -1,80 +1,125 @@
-.containerSearch {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  .titleRegistro {
-    font-size: clamp(1.5rem, 1.315rem + 0.988vw, 2.5rem);
-    font-family: "Roboto Mono", monospace;
-    text-align: center;
-  }
-  
-  .containerName {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .containerDate {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  form {
-    display: flex;
-    gap: 2rem;
-    height: 75px;
-    align-items: center;
-  }
-  
-  @media (max-width: 640px) {
-    form {
-      flex-direction: column;
-      height: 250px;
-  
-      label {
-        align-self: flex-start;
-      }
-  
-      .buttonSearch {
-        width: 100%;
-        margin-top: 4px;
-        border-radius: 10px;
-        align-self: center;
-      }
-    }
-  
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;  /* Garante que a mensagem de erro será posicionada dentro do contêiner */
+  width: 220px; /* Você pode ajustar a largura aqui conforme necessário */
+}
+
+.input-search {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+  border: 1px solid;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .buttonSearch {
-    border-radius: 50%;
-    padding: 7px 10px;
-    cursor: pointer;
-    border: 0;
-    background-color: white;
-    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-size: 15px;
-    transition: all 0.5s ease;
-    font-weight: 700;
-    align-self: flex-end;
-  }
-  
-  .buttonSearch:hover {
-    letter-spacing: 3px;
-    background-color: #44a246;
-    color: hsl(0, 0%, 100%);
-    box-shadow: #44a246 0px 7px 29px 0px;
-  }
-  
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .icon {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
   }
-  
+}
+
+.error {
+  position: absolute;  /* Faz a mensagem de erro não afetar o layout do input */
+  top: 100%;  /* Posiciona abaixo do input */
+  left: 0;
+  font-size: 0.75rem;
+  color: red; /* Cor vermelha para a mensagem de erro */
+  margin-top: 0.3rem; /* Distância entre o input e a mensagem de erro */
+  width: 100%;  /* Garante que a mensagem de erro não ultrapasse o contêiner */
+  text-align: left;  /* Opcional: ajusta o texto da mensagem de erro */
+}
+
+// Tema Claro
+.light {
+  .input-search {
+    background-color: #fff;
+    color: #333;
+    border-color: #ccc;
+
+    &:focus {
+      border-color: #44a246;
+      box-shadow: 0 0 0 3px rgba(68, 162, 70, 0.2);
+    }
+  }
+
+  label {
+    color: #333;
+  }
+
+  .buttonSearch {
+    background-color: #44a246;
+    color: white;
+
+    &:hover {
+      background-color: #3c903f;
+    }
+  }
+}
+
+// Tema Escuro
+.dark {
+  .input-search {
+    background-color: #2a2a2a;
+    color: #f1f1f1;
+    border-color: #444;
+
+    &:focus {
+      border-color: #44a246;
+      box-shadow: 0 0 0 3px rgba(68, 162, 70, 0.2);
+    }
+  }
+
+  label {
+    color: #f1f1f1;
+  }
+
+  .buttonSearch {
+    background-color: #44a246;
+    color: white;
+
+    &:hover {
+      background-color: #3c903f;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  .buttonSearch {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}

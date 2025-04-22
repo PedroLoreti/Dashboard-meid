@@ -9,6 +9,7 @@ export const SearchForm = ({
   onSubmit,
   titleClass,
   buttonClass,
+  themeClass,
   allowOrderSearch = true,
 }) => {
   const {
@@ -36,7 +37,7 @@ export const SearchForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(customSubmit)}>
+    <form onSubmit={handleSubmit(customSubmit)} className={themeClass}>
       <div className={styles.containerName}>
         <label htmlFor="name" className={titleClass}>Nome:</label>
         <input

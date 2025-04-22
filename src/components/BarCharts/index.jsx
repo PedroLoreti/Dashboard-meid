@@ -50,7 +50,7 @@ export const BarChartExample = ({ pedidos }) => {
         >
           <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false} />
           <XAxis dataKey="name" interval={0} angle={-90} textAnchor="end" height={100}  />
-          <YAxis domain={[0, 100]} interval={0} tickCount={11}/>
+          <YAxis domain={[0, 150]} interval={0} tickCount={10}/>
           <Tooltip />
           <Legend />
           <Bar dataKey="Pedidos" fill="#FF6347">

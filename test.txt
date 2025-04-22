@@ -1,0 +1,1 @@
+https://www.windsurf.com/profile?response_type=token&client_id=3GUryQ7ldAeKEuD2obYnppsnmj58eP5u&redirect_uri=vscode://Codeium.codeium&state=9d619017-0ca1-462b-9204-a2fd6228520f&scope=openid+profile+email&prompt=login&redirect_parameters_type=fragment

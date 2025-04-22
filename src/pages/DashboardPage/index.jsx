@@ -38,37 +38,39 @@ export const DashboardPage = () => {
     const titleClass = isDarkMode ? "title-white" : "title-black";
 
     return (
-        <div>
-            <h2 className={styles.titleDashboard + " " + titleClass} >Dashboard</h2>
-
+        <div className={`${styles.dashboardContainer} ${isDarkMode ? styles.dark : styles.light}`}>
+          <h2 className={`${styles.titleDashboard} ${titleClass}`}>Dashboard</h2>
+      
+          <div className={styles.searchWrapper}>
             <SearchForm
-                onSubmit={onSubmit}
-                titleClass={titleClass}
-                buttonClass={styles.buttonSearch}
-                allowOrderSearch={false}
+              onSubmit={onSubmit}
+              titleClass={titleClass}
+              buttonClass={styles.buttonSearch}
+              allowOrderSearch={false}
+              themeClass={isDarkMode ? styles.dark : styles.light}
             />
-            <div class={styles.cardContainer}>
-                <RevenueCard 
-                    title="Total Pedidos" 
-                    amount={`${pedidoComplete.length} pedidos`} 
-                />
-                <RevenueCard 
-                    title="Media por pedido" 
-                    amount={`${calcularMediaMinutos(pedidoComplete)}`} 
-                />
-                <RevenueCard 
-                    title="Pedido mais demorado" 
-                    amount={
-                    maisDemorado 
-                        ? `#${maisDemorado.codigo} - ${maisDemorado.total}` 
-                        : "Nenhum pedido"
-                    } 
-                />
-            </div>
-
-
-            <BarChartExample pedidos={pedidoComplete} />
+          </div>
+      
+          <div className={styles.cardContainer}>
+            <RevenueCard 
+              title="Total Pedidos" 
+              amount={`${pedidoComplete.length} pedidos`} 
+            />
+            <RevenueCard 
+              title="Media por pedido" 
+              amount={`${calcularMediaMinutos(pedidoComplete)}`} 
+            />
+            <RevenueCard 
+              title="Pedido mais demorado" 
+              amount={
+                maisDemorado 
+                  ? `#${maisDemorado.codigo} - ${maisDemorado.total}` 
+                  : "Nenhum pedido"
+              } 
+            />
+          </div>
+      
+          <BarChartExample pedidos={pedidoComplete} />
         </div>
-        
-  );
+      );
 };
