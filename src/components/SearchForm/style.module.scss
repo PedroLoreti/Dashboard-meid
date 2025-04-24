@@ -1,16 +1,14 @@
 form {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
   gap: 1.5rem;
   justify-content: center;
+  align-items: center;
 }
 
-.input-container {
+.inputContainer {
   display: flex;
   flex-direction: column;
-  position: relative;  /* Garante que a mensagem de erro será posicionada dentro do contêiner */
-  width: 220px; /* Você pode ajustar a largura aqui conforme necessário */
+  gap: 0.5rem;
 }
 
 .input-search {
@@ -44,14 +42,14 @@ label {
 }
 
 .error {
-  position: absolute;  /* Faz a mensagem de erro não afetar o layout do input */
-  top: 100%;  /* Posiciona abaixo do input */
+  position: absolute; /* Faz a mensagem de erro não afetar o layout do input */
+  top: 100%; /* Posiciona abaixo do input */
   left: 0;
   font-size: 0.75rem;
   color: red; /* Cor vermelha para a mensagem de erro */
   margin-top: 0.3rem; /* Distância entre o input e a mensagem de erro */
-  width: 100%;  /* Garante que a mensagem de erro não ultrapasse o contêiner */
-  text-align: left;  /* Opcional: ajusta o texto da mensagem de erro */
+  width: 100%; /* Garante que a mensagem de erro não ultrapasse o contêiner */
+  text-align: left; /* Opcional: ajusta o texto da mensagem de erro */
 }
 
 // Tema Claro

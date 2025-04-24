@@ -70,7 +70,7 @@ export const DashboardPage = () => {
             />
           </div>
       
-          <BarChartExample pedidos={pedidoComplete} />
+          <BarChartExample pedidos={pedidoComplete} theme={isDarkMode ? "dark" : "light"} />
         </div>
       );
 };

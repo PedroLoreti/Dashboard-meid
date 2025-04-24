@@ -1,12 +1,26 @@
-.container {
-  width: 650px;
-  height: 450px;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+:root {
+  --chart-bar: #FF6347;
+  --chart-text: #111;
+  --chart-grid: #ddd;
+  --chart-tooltip-bg: #fff;
+  --chart-tooltip-text: #333;
 }
 
-.tooltip {
-  font-size: 14px;
-  color: #333;
+[data-theme='dark'] {
+  --chart-bar: #fb7185; // rosa mais claro para contraste
+  --chart-text: #f3f4f6; // quase branco
+  --chart-grid: #333; // linha mais suave
+  --chart-tooltip-bg: #1f2937; // cinza escuro
+  --chart-tooltip-text: #e5e5e5;
+}
+
+
+.container {
+  width: 100%;
+  height: 400px;
+
+  .recharts-tooltip-wrapper {
+    background-color: var(--chart-tooltip-bg) !important;
+    color: var(--chart-tooltip-text) !important;
+  }
 }

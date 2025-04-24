@@ -4,14 +4,15 @@ import {
 } from 'recharts';
 import styles from "./style.module.scss";
 
-// O componente agora espera um "pedidos" como prop
-export const BarChartExample = ({ pedidos }) => {
+export const BarChartExample = ({ pedidos, theme = "light" }) => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const pedidosPorHora = Array(24).fill(0); // Contagem de pedidos por hora
+  // Define cor com base no tema
+  const textColor = theme === "dark" ? "#FFFFFF" : "#000000";
+  const tooltipBg = theme === "dark" ? "#1f1f1f" : "#f9f9f9";
 
-    // Função para parsear a data/hora
+  useEffect(() => {
+    const pedidosPorHora = Array(24).fill(0);
     const parseHora = (dataHoraStr) => {
       const [data, hora] = dataHoraStr.split(' ');
       const [dia, mes, ano] = data.split('/').map(Number);
@@ -19,40 +20,57 @@ export const BarChartExample = ({ pedidos }) => {
       return new Date(ano, mes - 1, dia, h, m, s);
     };
 
-    // Verifica se pedidos foram passados como prop e faz o agrupamento
     if (pedidos && Array.isArray(pedidos)) {
       pedidos.forEach((pedido) => {
-        const dataInicio = parseHora(pedido.dataInicio); // Usa dataInicio
+        const dataInicio = parseHora(pedido.dataInicio);
         const hora = dataInicio.getHours();
         pedidosPorHora[hora]++;
       });
 
-      // Gerar dados para o gráfico (das 5:00 até 00:00)
       const graficoData = [];
-      // Itera de 5 até 23 (horário final do intervalo)
       for (let i = 5; i < 24; i++) {
         graficoData.push({
-          name: `${i}:00`, // Apenas a hora inicial
+          name: `${i}:00`,
           Pedidos: pedidosPorHora[i],
         });
       }
 
-      // Organizando o objeto no formato desejado para o gráfico
-      setData(graficoData); // Atualiza o estado com os dados do gráfico
+      setData(graficoData);
     }
-  }, [pedidos]); // Reexecuta o efeito toda vez que pedidos muda
+  }, [pedidos]);
 
   return (
     <div className={styles.container}>
       <ResponsiveContainer>
-        <BarChart
-          data={data} // Aqui, pegamos o array com os dados agrupados por hora
-        >
-          <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={false} />
-          <XAxis dataKey="name" interval={0} angle={-90} textAnchor="end" height={100}  />
-          <YAxis domain={[0, 150]} interval={0} tickCount={10}/>
-          <Tooltip />
-          <Legend />
+        <BarChart data={data}>
+          <CartesianGrid stroke="none" />
+
+          <XAxis
+            dataKey="name"
+            interval={0}
+            angle={-90}
+            textAnchor="end"
+            height={100}
+            stroke={textColor}
+            tick={{ fill: textColor }}
+          />
+
+          <YAxis
+            domain={[0, 150]}
+            interval={0}
+            tickCount={10}
+            stroke={textColor}
+            tick={{ fill: textColor }}
+          />
+
+          <Tooltip
+            contentStyle={{ backgroundColor: tooltipBg, color: textColor, border: "none" }}
+            labelStyle={{ color: textColor }}
+            itemStyle={{ color: textColor }}
+          />
+
+          <Legend wrapperStyle={{ color: textColor }} />
+
           <Bar dataKey="Pedidos" fill="#FF6347">
             <LabelList
               dataKey="Pedidos"
@@ -62,7 +80,7 @@ export const BarChartExample = ({ pedidos }) => {
                   <text
                     x={x + width / 2}
                     y={y - 5}
-                    fill="#333"
+                    fill={textColor}
                     textAnchor="middle"
                     fontSize={12}
                   >

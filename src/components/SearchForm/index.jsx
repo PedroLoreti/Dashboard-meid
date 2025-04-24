@@ -38,7 +38,7 @@ export const SearchForm = ({
 
   return (
     <form onSubmit={handleSubmit(customSubmit)} className={themeClass}>
-      <div className={styles.containerName}>
+      <div className={styles.inputContainer}>
         <label htmlFor="name" className={titleClass}>Nome:</label>
         <input
           type="text"
@@ -52,7 +52,7 @@ export const SearchForm = ({
         )}
       </div>
 
-      <div className={styles.containerDate}>
+      <div className={styles.inputContainer}>
         <label htmlFor="date" className={titleClass}>Data:</label>
         <Controller
           control={control}
@@ -65,6 +65,7 @@ export const SearchForm = ({
               locale={ptBR}
               className="input-search"
               placeholderText="dd/mm/yyyy"
+              wrapperClassName="date-wrapper"
             />
           )}
         />
