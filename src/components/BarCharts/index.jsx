@@ -42,7 +42,8 @@ export const BarChartExample = ({ pedidos, theme = "light" }) => {
   return (
     <div className={styles.container}>
       <ResponsiveContainer>
-        <BarChart data={data}>
+        <BarChart data={data} margin={{ top: 30, right: 30, left: -15, bottom: 0 }} >
+          
           <CartesianGrid stroke="none" />
 
           <XAxis
@@ -50,7 +51,7 @@ export const BarChartExample = ({ pedidos, theme = "light" }) => {
             interval={0}
             angle={-90}
             textAnchor="end"
-            height={100}
+            height={80}
             stroke={textColor}
             tick={{ fill: textColor }}
           />

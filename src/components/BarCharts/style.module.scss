@@ -18,6 +18,9 @@
 .container {
   width: 100%;
   height: 400px;
+  letter-spacing: 1px;
+  font-size: clamp(0.8rem, 0.206vw + 0.752rem, 1rem);
+  
 
   .recharts-tooltip-wrapper {
     background-color: var(--chart-tooltip-bg) !important;
