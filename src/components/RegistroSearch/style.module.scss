@@ -25,12 +25,6 @@
   align-items: center;
 }
 
-form {
-  display: flex;
-  gap: 2rem;
-  height: 75px;
-  align-items: center;
-}
 
 @media (max-width: 640px) {
   form {
@@ -85,8 +79,8 @@ form {
 }
 
 .buttonSearch {
-  border-radius: 50%;
-  padding: 7px 10px;
+  border-radius: 100%;
+  padding: 12px 14px;
   cursor: pointer;
   border: 0;
   background-color: white;
@@ -96,7 +90,6 @@ form {
   font-size: 15px;
   transition: all 0.5s ease;
   font-weight: 700;
-  align-self: flex-end;
 }
 
 .buttonSearch:hover {
@@ -107,8 +100,8 @@ form {
 }
 
 .icon {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
 }
 
 @media (max-width: 510px) {

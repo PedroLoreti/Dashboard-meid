@@ -42,7 +42,7 @@ export const BarChartExample = ({ pedidos, theme = "light" }) => {
   return (
     <div className={styles.container}>
       <ResponsiveContainer>
-        <BarChart data={data} margin={{ top: 30, right: 30, left: -15, bottom: 0 }} >
+        <BarChart data={data} margin={{ top: 30, right: 15, left: -15, bottom: 0 }} >
           
           <CartesianGrid stroke="none" />
 

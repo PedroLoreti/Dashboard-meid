@@ -45,7 +45,7 @@ export const DashboardPage = () => {
             <SearchForm
               onSubmit={onSubmit}
               titleClass={titleClass}
-              buttonClass={styles.buttonSearch}
+              buttonClass={styles.buttonClass}
               allowOrderSearch={false}
               themeClass={isDarkMode ? styles.dark : styles.light}
             />

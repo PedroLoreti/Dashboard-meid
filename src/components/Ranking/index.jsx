@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { PedidoContext } from "../../providers/PedidoContext";
+import { PedidoEndContext } from "../../providers/PedidosEnd";
 import usePedidoCount from "../../hooks/usePedidoCount";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,11 +13,11 @@ import { useTheme } from "../../providers/ThemeContext";
 export const Ranking = () => {
   
   const { isDarkMode } = useTheme()
-  const { pedidosList } = useContext(PedidoContext);
+  const { pedidosEndList } = useContext(PedidoEndContext)
   const [dataPedido, setDataPedido] = useState(null);
   const dataFormatada = dataPedido ? format(dataPedido, "dd/MM/yyyy") : null;
 
-  const pedidoCount = usePedidoCount(pedidosList, dataFormatada);
+  const pedidoCount = usePedidoCount(pedidosEndList, dataFormatada);
   const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
   const pedidoSorted = Object.entries(pedidoCount).sort((a, b) => b[1] - a[1]);
   ("");

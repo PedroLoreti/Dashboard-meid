@@ -1,6 +1,7 @@
 import styles from "./style.module.scss";
 import { useTheme } from "../../../providers/ThemeContext";
 
+
 export const RankingCard = ({ item, index }) => {
 
   const { isDarkMode } = useTheme()
