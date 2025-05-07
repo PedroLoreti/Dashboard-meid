@@ -25,6 +25,7 @@
   flex-direction: column;
   align-items: center;
   width: clamp(15.625rem, 11.574rem + 21.605vw, 37.5rem);
+
 }
 
 .titleRanking {
@@ -33,3 +34,92 @@
   margin-right: 500;
 }
 
+.podioContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: end;
+  margin-top: 5rem;
+  padding-inline: 1rem; // Adiciona espaço lateral
+}
+
+.podioCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #f0f0f0; // fundo pode ser trocado de acordo com o tema
+  width: clamp(5.625rem, 1.935vw + 5.177rem, 7.5rem);
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  height: 250px;
+
+  // Estilo para as imagens
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+  // Nome do vencedor na parte superior
+  .paragraph {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+  }
+
+  // Cores para os pódios: ouro, prata e bronze
+  &.pos0 {
+    background-color: #ffd700; // Ouro
+  }
+  &.pos1 {
+    background-color: #c0c0c0; // Prata
+  }
+  &.pos2 {
+    background-color: #cd7f32; // Bronze
+  }
+}
+
+// Número do pódio fora da coluna
+.podioCard .position {
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  top: -30px;  // Move o número para baixo, fora da coluna
+  width: 100%;
+  text-align: center;
+}
+
+
+// Alturas para as colunas do pódio
+.pos0 {
+  order: 2; // Centro
+  height: 300px;
+}
+.pos1 {
+  order: 1; // Esquerda
+  height: 230px;
+}
+.pos2 {
+  order: 3; // Direita
+  height: 210px;
+}
+
+// Para cores de fundo dinâmicas (se quiser usar CSS classes globais via tema)
+.background-white {
+  background-color: #ffffff;
+}
+.background-black {
+  background-color: #1e1e1e;
+}
+
+.numPedidos {
+  font-size: 22px;
+  font-weight: 700;
+}

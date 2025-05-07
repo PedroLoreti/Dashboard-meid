@@ -1,12 +1,17 @@
 li {
   width: 100%;
+  position: relative;
 }
 
-.imagem{
+.imagem {
   width: 70px;
   height: 70px;
+  min-width: 70px;
+  min-height: 70px;
   border-radius: 50%;
   border: 2px solid white;
+  object-fit: cover;
+
 }
 
 .containerCard {
@@ -14,14 +19,15 @@ li {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-
   gap: 1rem;
   padding: 10px 20px;
-  border-radius: 4px;
-  background-color: rgba(128, 128, 128, 0.404);
+  border-radius: 8px;
+
+  background-color: rgba(128, 128, 128, 0.1); // fundo neutro leve
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
   position: relative;
 
   .position {
@@ -31,11 +37,37 @@ li {
     font-weight: 700;
     font-family: "Roboto", sans-serif;
   }
-
-
 }
+
 .paragraph,
 .numPedidos {
-  font-size: clamp(0.875rem, 0.806rem + 0.37vw, 1.25rem);
+  font-size: clamp(1.01rem, 0.806rem + 0.37vw, 1.25rem);
   font-family: "Roboto", sans-serif;
+  font-weight: 700;
+}
+
+// Classes para tema claro/escuro (você já usa via JS)
+.background-white {
+  background-color: #ffffff;
+}
+
+.background-black {
+  background-color: #1e1e1e;
+}
+
+.title-white {
+  color: #ffffff;
+}
+
+.title-black {
+  color: #1e1e1e;
+}
+
+// Cores por desempenho
+.green {
+  color: #2ecc71; // verde sucesso
+}
+
+.red {
+  color: #e74c3c; // vermelho alerta
 }

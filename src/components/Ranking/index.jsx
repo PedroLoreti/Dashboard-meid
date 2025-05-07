@@ -9,18 +9,36 @@ import { RankingCard } from "./RankingCard";
 import styles from "./style.module.scss";
 import { useTheme } from "../../providers/ThemeContext";
 
-
 export const Ranking = () => {
-  
-  const { isDarkMode } = useTheme()
-  const { pedidosEndList } = useContext(PedidoEndContext)
+  const { isDarkMode } = useTheme();
+  const { pedidosEndList } = useContext(PedidoEndContext);
   const [dataPedido, setDataPedido] = useState(null);
   const dataFormatada = dataPedido ? format(dataPedido, "dd/MM/yyyy") : null;
 
   const pedidoCount = usePedidoCount(pedidosEndList, dataFormatada);
-  const titleClass = `${isDarkMode ? "title-white" : "title-black"}`;
+  const titleClass = isDarkMode ? "title-white" : "title-black";
+
+  // Ordena os pedidos do maior para o menor
   const pedidoSorted = Object.entries(pedidoCount).sort((a, b) => b[1] - a[1]);
-  ("");
+
+  // Separa top 3 e o restante
+  const top3 = pedidoSorted.slice(0, 3);
+  const rest = pedidoSorted.slice(3);
+
+  // Define preposições comuns
+  const preposicoes = ["da", "de", "dos", "das", "do", "a", "ao", "na", "no"];
+
+  // Função para extrair o nome a ser exibido
+  const getNomeExibido = (nome) => {
+    const nomeArray = nome.split(" ");
+    return preposicoes.includes(nomeArray[1]?.toLowerCase())
+      ? nomeArray.slice(0, 3).join(" ")
+      : nomeArray.slice(0, 2).join(" ");
+  };
+
+  const getImageUrl = (name) =>
+    `https://res.cloudinary.com/dilivah9m/image/upload/${name.replace(/ /g, "_")}.jpg`;
+  const fallbackImage = "https://res.cloudinary.com/dilivah9m/image/upload/Icon_unknown.jpg";
 
   const handleChange = (date) => {
     setDataPedido(date);
@@ -28,26 +46,54 @@ export const Ranking = () => {
 
   return (
     <div className={styles.containerDiv}>
-      <h1 className={` ${titleClass} ${styles.titleRanking}`}>Ranking Pedidos</h1>
-      <div className={styles.containerMain}>
-        
+      <h1 className={`${titleClass} ${styles.titleRanking}`}>Ranking Pedidos</h1>
 
+      <div className={styles.containerMain}>
         <div className={styles.containerDate}>
-          <label htmlFor="date" className={` ${titleClass} ${styles.label}`}>Data:</label>
+          <label htmlFor="date" className={`${titleClass} ${styles.label}`}>
+            Data:
+          </label>
 
           <DatePicker
-          selected={dataPedido}
-          onChange={handleChange}
-          dateFormat="dd/MM/yyyy"
-          locale={ptBR}
-          className="input-search"
-          placeholderText="dd/mm/yyyy"
-        />
+            selected={dataPedido}
+            onChange={handleChange}
+            dateFormat="dd/MM/yyyy"
+            locale={ptBR}
+            className="input-search"
+            placeholderText="dd/mm/yyyy"
+          />
         </div>
 
+        {/* PÓDIO */}
+        <div className={styles.podioContainer}>
+          {top3.map((item, index) => {
+            const positions = [1, 0, 2]; // posição visual: 2°, 1°, 3°
+            const pos = positions[index];
+
+            return (
+              <div key={index} className={`${styles.podioCard} ${styles[`pos${pos}`]}`}>
+                <span className={`${titleClass} ${styles.position}`}>{[2, 1, 3][index]}°</span>
+                <img
+                  className={styles.imagem}
+                  src={getImageUrl(item[0])}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = fallbackImage;
+                  }}
+                />
+                <p className={`${titleClass} ${styles.paragraph}`}>
+                  {getNomeExibido(item[0])}
+                </p>
+                <span className={`${styles.numPedidos}`}>{item[1]}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* RESTANTE DA LISTA */}
         <ul className={styles.containerList}>
-          {pedidoSorted.map((item, index) => (
-            <RankingCard key={item.id} item={item} index={index} />
+          {rest.map((item, index) => (
+            <RankingCard key={index + 3} item={item} index={index + 3} />
           ))}
         </ul>
       </div>
