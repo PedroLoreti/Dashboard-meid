@@ -23,6 +23,7 @@ const RevenueCard = ({ title, amount, change }) => {
       <div className={titleClass}>{title}</div>
       <div className={styles.amount}>{amount}</div>
       <div className={styles.change}>{change}</div>
+
     </div>
   );
 };
