@@ -4,13 +4,13 @@ li {
 }
 
 .imagem {
-  width: 70px;
-  height: 70px;
-  min-width: 70px;
-  min-height: 70px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   border-radius: 50%;
   border: 2px solid white;
-  object-fit: cover;
+  object-fit: fill;
 
 }
 
