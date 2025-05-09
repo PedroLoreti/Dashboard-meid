@@ -27,7 +27,9 @@ export const RegistroSearch = () => {
   const pedidoComplete = useFilterFind(filteredData, pedidosEndList);
 
   const titleClass = isDarkMode ? "title-white" : "title-black";
-  const borderContainer = isDarkMode ? "border-container-white" : "border-container-black";
+  const borderContainer = isDarkMode
+    ? "border-container-white"
+    : "border-container-black";
   const border = isDarkMode ? "border-white" : "border-black";
 
   return (
@@ -41,6 +43,12 @@ export const RegistroSearch = () => {
         titleClass={titleClass}
         buttonClass={styles.buttonSearch}
       />
+
+      <div className={styles.count}>
+        <i className={`fa fa-list ${styles.countIcon}`} />{" "}
+        {/* Um ícone de lista para visualmente indicar a quantidade */}
+        {"Count: " + pedidoComplete.length}
+      </div>
 
       <div className={styles.containerGrid + " " + borderContainer}>
         <div className={styles.header + " " + titleClass}>
@@ -65,6 +73,13 @@ export const RegistroSearch = () => {
           ))}
         </div>
       </div>
+      {pedidoComplete.length === 0 && (
+        <div className={styles.empty}>
+          <i className={`fa fa-exclamation-circle ${styles.emptyIcon}`} />{" "}
+          {/* Ícone de alerta */}
+          Nenhum pedido encontrado
+        </div>
+      )}
     </div>
   );
 };

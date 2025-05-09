@@ -11,8 +11,9 @@ li {
   border-radius: 50%;
   border: 2px solid white;
   object-fit: fill;
-
 }
+
+
 
 .containerCard {
   display: flex;
@@ -24,8 +25,7 @@ li {
   border-radius: 8px;
 
   background-color: rgba(128, 128, 128, 0.1); // fundo neutro leve
-  box-shadow:
-    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
   position: relative;

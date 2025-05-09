@@ -5,6 +5,16 @@
   align-items: center;
   margin: 50px 0 100px 0;
   width: clamp(16rem, 24.774vw + 10.271rem, 40rem);
+  padding-inline: 1rem;
+
+  @media (min-width: 2000px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    width: 100%;
+    max-width: 1400px;
+    justify-items: center;
+  }
 }
 
 .datepicker {
@@ -28,9 +38,10 @@
 }
 
 .titleRanking {
-  font-size: clamp(1.5rem, 1.315rem + 0.988vw, 2.5rem);
+  font-size: clamp(2rem, 4vw, 4rem);
   color: white;
-  margin-right: 500;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .podioContainer {
@@ -49,68 +60,62 @@
   justify-content: space-between;
   padding: 1rem;
   border-radius: 1rem;
-  background-color: #f0f0f0; // fundo pode ser trocado de acordo com o tema
+  background-color: #f0f0f0;
   width: clamp(5.625rem, 1.935vw + 5.177rem, 7.5rem);
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   position: relative;
   height: 250px;
 
-  // Estilo para as imagens
   img {
-    width: 80px;
-    height: 80px;
-    object-fit: fill;
+    width: clamp(60px, 8vw, 100px);
+    height: clamp(60px, 8vw, 100px);
+    object-fit: cover;
     border-radius: 50%;
     margin-bottom: 1rem;
   }
 
-  // Nome do vencedor na parte superior
   .paragraph {
     margin-top: 0.5rem;
-    font-size: 1rem;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
     font-weight: bold;
     color: black;
+    text-align: center;
   }
 
-  // Cores para os pódios: ouro, prata e bronze
   &.pos0 {
-    background-color: #ffd700; // Ouro
+    background-color: #ffd700;
   }
   &.pos1 {
-    background-color: #c0c0c0; // Prata
+    background-color: #c0c0c0;
   }
   &.pos2 {
-    background-color: #cd7f32; // Bronze
+    background-color: #cd7f32;
   }
 }
 
-// Número do pódio fora da coluna
 .podioCard .position {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 2rem);
   font-weight: bold;
   position: absolute;
-  top: -30px;  // Move o número para baixo, fora da coluna
+  top: -30px;
   width: 100%;
   text-align: center;
 }
 
-
-// Alturas para as colunas do pódio
 .pos0 {
-  order: 2; // Centro
+  order: 2;
   height: 300px;
 }
 .pos1 {
-  order: 1; // Esquerda
+  order: 1;
   height: 230px;
 }
 .pos2 {
-  order: 3; // Direita
+  order: 3;
   height: 210px;
 }
 
-// Para cores de fundo dinâmicas (se quiser usar CSS classes globais via tema)
 .background-white {
   background-color: #ffffff;
 }
@@ -119,6 +124,7 @@
 }
 
 .numPedidos {
-  font-size: 22px;
+  font-size: clamp(1.25rem, 2vw, 2rem);
   font-weight: 700;
+  color: #333;
 }
