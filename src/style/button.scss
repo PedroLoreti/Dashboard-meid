@@ -1,24 +1,3 @@
-.button {
-  padding: 17px clamp(1.25rem, 0.952rem + 1.29vw, 2.5rem);
-  border-radius: 50px;
-  cursor: pointer;
-  border: 0;
-  background-color: white;
-  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-size: 15px;
-  transition: all 0.5s ease;
-  font-weight: 700;
-}
-
-.button:hover {
-  letter-spacing: 3px;
-  background-color: #44a246;
-  color: hsl(0, 0%, 100%);
-  box-shadow: #44a246 0px 7px 29px 0px;
-}
-
 .background-white {
   background-color: white;
 }
@@ -58,4 +37,5 @@
   border: none;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2);
   padding: 10px;
+
 }

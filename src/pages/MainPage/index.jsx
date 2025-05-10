@@ -15,11 +15,14 @@ export const MainPage = () => {
         </h1>
       </div>
       <div className={styles.containerButton}>
-        <button onClick={() => navigate("/Ranking")} className="button">
+        <button onClick={() => navigate("/Ranking")} className={styles.button}>
           Ranking
         </button>
-        <button onClick={() => navigate("/Registro")} className="button">
+        <button onClick={() => navigate("/Registro")} className={styles.button}>
           Registro de Pedidos
+        </button>
+        <button onClick={() => navigate("/Dashboard")} className={styles.button}>
+          Dashboard
         </button>
       </div>
     </div>
