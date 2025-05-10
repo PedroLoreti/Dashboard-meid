@@ -67,12 +67,12 @@ export const Ranking = () => {
         {/* PÓDIO */}
         <div className={styles.podioContainer}>
           {top3.map((item, index) => {
-            const positions = [1, 0, 2]; // posição visual: 2°, 1°, 3°
+            const positions = [0, 1, 2]; // posição visual: 2°, 1°, 3°
             const pos = positions[index];
 
             return (
               <div key={index} className={`${styles.podioCard} ${styles[`pos${pos}`]}`}>
-                <span className={`${titleClass} ${styles.position}`}>{[2, 1, 3][index]}°</span>
+                <span className={`${titleClass} ${styles.position}`}>{[1, 2, 3][index]}°</span>
                 <img
                   className={styles.imagem}
                   src={getImageUrl(item[0])}

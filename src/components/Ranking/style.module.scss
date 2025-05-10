@@ -12,7 +12,7 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 3rem;
     width: 100%;
-    max-width: 1400px;
+    max-width: 2000px;
     justify-items: center;
   }
 }
@@ -47,10 +47,10 @@
 .podioContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 2rem;
   align-items: end;
-  margin-top: 5rem;
-  padding-inline: 1rem;
+  margin-top: 4rem;
+  padding-inline: 2rem;
 }
 
 .podioCard {
@@ -58,62 +58,84 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-  border-radius: 1rem;
-  background-color: #f0f0f0;
-  width: clamp(5.625rem, 1.935vw + 5.177rem, 7.5rem);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  width: clamp(6rem, 2vw + 6rem, 10rem);
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   position: relative;
-  height: 250px;
+  height: auto;
+  min-height: 260px;
+  transition: transform 0.3s ease;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #f9f9f9, #eaeaea);
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 
   img {
-    width: clamp(60px, 8vw, 100px);
-    height: clamp(60px, 8vw, 100px);
+    width: clamp(70px, 6vw, 110px);
+    height: clamp(70px, 6vw, 110px);
     object-fit: cover;
     border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     margin-bottom: 1rem;
   }
 
   .paragraph {
     margin-top: 0.5rem;
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    font-weight: bold;
-    color: black;
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
+    font-weight: 700;
+    color: #222;
     text-align: center;
   }
 
+  .numPedidos {
+    font-size: clamp(1.3rem, 2vw, 2rem);
+    font-weight: 700;
+    margin-top: 0.5rem;
+  }
+
   &.pos0 {
-    background-color: #ffd700;
+    background: linear-gradient(145deg, #fff7c4, #ffe85c);
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
   }
+
   &.pos1 {
-    background-color: #c0c0c0;
+    background: linear-gradient(145deg, #f0f0f0, #d4d4d4);
+    border: 2px solid #c0c0c0;
   }
+
   &.pos2 {
-    background-color: #cd7f32;
+    background: linear-gradient(145deg, #e8c7a1, #cd7f32);
+    border: 2px solid #b87333;
   }
 }
 
 .podioCard .position {
-  font-size: clamp(1.2rem, 2vw, 2rem);
-  font-weight: bold;
+  font-size: clamp(1.3rem, 2.5vw, 2.2rem);
+  font-weight: 800;
   position: absolute;
-  top: -30px;
+  top: -35px;
   width: 100%;
   text-align: center;
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
 
 .pos0 {
   order: 2;
-  height: 300px;
+  min-height: 320px;
 }
 .pos1 {
   order: 1;
-  height: 230px;
+  min-height: 260px;
 }
 .pos2 {
   order: 3;
-  height: 210px;
+  min-height: 240px;
 }
 
 .background-white {
@@ -121,10 +143,4 @@
 }
 .background-black {
   background-color: #1e1e1e;
-}
-
-.numPedidos {
-  font-size: clamp(1.25rem, 2vw, 2rem);
-  font-weight: 700;
-  color: #333;
 }

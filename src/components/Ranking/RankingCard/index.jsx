@@ -4,8 +4,8 @@ import { useTheme } from "../../../providers/ThemeContext";
 export const RankingCard = ({ item, index }) => {
   const { isDarkMode } = useTheme();
 
-  const titleClass = isDarkMode ? "title-white" : "title-black";
-  const borderClass = isDarkMode ? "background-black" : "background-white";
+  const titleClass = isDarkMode ? styles.titleWhite : styles.titleBlack;
+  const borderClass = isDarkMode ? styles.backgroundBlack : styles.backgroundWhite;
   const mediaColor = item[1] >= 30 ? "green" : "red";
 
   const imageUrl = `https://res.cloudinary.com/dilivah9m/image/upload/${item[0].replace(/ /g, "_")}.jpg`;

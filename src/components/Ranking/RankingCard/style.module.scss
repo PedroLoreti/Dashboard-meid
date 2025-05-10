@@ -1,89 +1,130 @@
 li {
   width: 100%;
   position: relative;
-
-  @media (min-width: 2000px) {
-    width: 100%;
-    max-width: 400px;
-  }
 }
 
 .imagem {
-  width: clamp(60px, 5vw, 80px);
-  height: clamp(60px, 5vw, 80px);
-  min-width: 60px;
-  min-height: 60px;
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 3px solid #ffffff;
   object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .containerCard {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  padding: 10px 20px;
-  border-radius: 8px;
-
-  background-color: rgba(128, 128, 128, 0.1);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 16px 24px;
+  border-radius: 16px;
+  background: linear-gradient(to right, #f5f7fa, #e0e4ec);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.08);
   position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+  animation: fadeInUp 0.6s ease both;
 
-  @media (min-width: 2000px) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.75rem;
-    padding: 1.5rem;
-    max-width: 300px;
-    height: 100%;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08), 0 12px 24px rgba(0, 0, 0, 0.12);
+
+    .imagem {
+      transform: scale(1.05);
+    }
   }
 
   .position {
     position: absolute;
-    left: -35px;
+    left: -32px;
     font-size: clamp(1rem, 0.91rem + 0.387vw, 1.375rem);
     font-weight: 700;
     font-family: "Roboto", sans-serif;
-
-    @media (min-width: 2000px) {
-      position: static;
-      margin-bottom: 0.5rem;
-    }
+    color: #555;
+    transition: all 0.3s ease;
   }
 }
 
 .paragraph,
 .numPedidos {
-  font-size: clamp(1.01rem, 0.806rem + 0.37vw, 1.25rem);
+  font-size: clamp(1.02rem, 0.82rem + 0.38vw, 1.3rem);
   font-family: "Roboto", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
+  color: #333;
 }
 
-.background-white {
-  background-color: #ffffff;
+// Tema claro com gradiente suave
+.backgroundWhite {
+  background: linear-gradient(to right, #ffffff, #f2f2f2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-.background-black {
-  background-color: #1e1e1e;
+// Tema escuro com gradiente escuro elegante
+.backgroundBlack {
+  background: linear-gradient(to right, #2e2e2e, #1c1c1c);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
-.title-white {
+.titleWhite {
   color: #ffffff;
 }
 
-.title-black {
+.titleBlack {
   color: #1e1e1e;
 }
 
+// Cores por desempenho
 .green {
-  color: #2ecc71;
+  color: #27ae60;
 }
 
 .red {
   color: #e74c3c;
+}
+
+// Animação de entrada
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 2300px) {
+  .containerCard {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    gap: 1rem;
+  }
+
+  .containerCard .position {
+    position: relative;
+    left: 0;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+    color: #888;
+  }
+
+  .containerCard .imagem {
+    width: 200px;
+    height: 200px;
+    min-width: 100px;
+    min-height: 100px;
+  }
+
+  .paragraph,
+  .numPedidos {
+    font-size: 1.2rem;
+  }
 }
