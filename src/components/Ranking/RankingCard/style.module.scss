@@ -4,10 +4,10 @@ li {
 }
 
 .imagem {
-  width: 80px;
-  height: 80px;
-  min-width: 80px;
-  min-height: 80px;
+  width: clamp(3.75rem, 1.29vw + 3.452rem, 5rem);
+  height: clamp(3.75rem, 1.29vw + 3.452rem, 5rem);
+  min-width: clamp(3.75rem, 1.29vw + 3.452rem, 5rem);
+  min-height: clamp(3.75rem, 1.29vw + 3.452rem, 5rem);
   border-radius: 50%;
   border: 3px solid #ffffff;
   object-fit: cover;
@@ -25,47 +25,57 @@ li {
   background: linear-gradient(to right, #f5f7fa, #e0e4ec);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.08);
   position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center center;
   animation: fadeInUp 0.6s ease both;
+  width: 100%;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08), 0 12px 24px rgba(0, 0, 0, 0.12);
+   transform: scale(1.03) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 16px 32px rgba(0, 0, 0, 0.2);
 
     .imagem {
-      transform: scale(1.05);
+      transition: transform 0.4s ease-in-out;
     }
   }
 
   .position {
     position: absolute;
-    left: -32px;
+    left: -40px;
     font-size: clamp(1rem, 0.91rem + 0.387vw, 1.375rem);
     font-weight: 700;
     font-family: "Roboto", sans-serif;
-    color: #555;
     transition: all 0.3s ease;
   }
 }
 
 .paragraph,
 .numPedidos {
-  font-size: clamp(1.02rem, 0.82rem + 0.38vw, 1.3rem);
+  font-size: clamp(0.8rem, 1.5vw, 1.3rem); /* Fonte ajustável */
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   color: #333;
+  max-width: 100%;
+  text-align: center;
+  white-space: normal; /* Permite quebra de linha */
+  overflow: visible; /* Deixa o texto visível */ /* Quebra em palavras longas */
+  line-height: 1.2;
+  max-width: 100%;
 }
 
-// Tema claro com gradiente suave
+.numPedidos {
+  flex-shrink: 0;
+}
+
+// Tema claro com contraste maior
 .backgroundWhite {
-  background: linear-gradient(to right, #ffffff, #f2f2f2);
+  background: linear-gradient(to right, #ffffff, #eaeaea);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-// Tema escuro com gradiente escuro elegante
+// Tema escuro com contraste maior
 .backgroundBlack {
-  background: linear-gradient(to right, #2e2e2e, #1c1c1c);
+  background: linear-gradient(to right, #1f1f1f, #0e0e0e);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -98,6 +108,33 @@ li {
   }
 }
 
+// Responsividade para Full HD (TVs de 1920px ou mais)
+@media (min-width: 1920px) {
+  .containerCard {
+    padding: 32px;
+    gap: 1.5rem;
+    font-size: 1.25rem;
+    min-height: 200px;
+  }
+
+  .containerCard .imagem {
+    width: 120px;
+    height: 120px;
+    min-width: 100px;
+    min-height: 100px;
+  }
+
+  .containerCard .position {
+    font-size: 1.75rem;
+  }
+
+  .paragraph,
+  .numPedidos {
+    font-size: 1.8rem;
+  }
+}
+
+// Responsividade para resoluções 4K e maiores
 @media (min-width: 2300px) {
   .containerCard {
     flex-direction: column;
@@ -111,9 +148,10 @@ li {
   .containerCard .position {
     position: relative;
     left: 0;
+
     margin-bottom: 8px;
-    font-size: 1.5rem;
-    color: #888;
+    font-size: 2rem;
+    text-align: center;
   }
 
   .containerCard .imagem {
@@ -125,6 +163,7 @@ li {
 
   .paragraph,
   .numPedidos {
-    font-size: 1.2rem;
+    font-size: 2rem;
+    height: 78px;
   }
 }
