@@ -1,15 +1,15 @@
-export const useFilterFind = (dataFiltred, pedidoFinalizado) => {
-  const pedidosIniciais = {};
+export const useFilterFind = (dataFiltred = [], pedidoFinalizado = []) => {
+  const pedidosIniciais = [];
 
-  // Indexa os pedidos iniciados
+  // Coleta todos os pedidos iniciados
   dataFiltred.forEach((pedido) => {
     const nome = pedido[1];
     const dataInicio = pedido[0];
 
     for (let i = 2; i < pedido.length; i++) {
       const codigo = pedido[i];
-      if (codigo && !pedidosIniciais[codigo]) {
-        pedidosIniciais[codigo] = { nome, dataInicio };
+      if (codigo) {
+        pedidosIniciais.push({ codigo, nome, dataInicio });
       }
     }
   });
@@ -20,45 +20,82 @@ export const useFilterFind = (dataFiltred, pedidoFinalizado) => {
     return new Date(`${ano}-${mes}-${dia}T${hora}`);
   };
 
-  const finalizadosMap = {};
+  const finalizados = [];
 
-  // Indexa os pedidos finalizados
+  // Coleta todos os pedidos finalizados (agora com nome também)
   pedidoFinalizado.forEach((pedido) => {
-    const finalData = pedido[0];
+    const dataFinal = pedido[0];
+    const nome = pedido[1];
+
     for (let i = 2; i < pedido.length; i++) {
       const codigo = pedido[i];
       if (codigo) {
-        finalizadosMap[codigo] = finalData;
+        finalizados.push({ codigo, nome, dataFinal });
       }
     }
   });
 
   const resultado = [];
 
-  // Cria o array final combinando os dados
-  for (const codigo in pedidosIniciais) {
-    const { nome, dataInicio } = pedidosIniciais[codigo];
-    const dataFinal = finalizadosMap[codigo] || null;
+  // Associa apenas pedidos com mesmo código e mesmo nome
+  pedidosIniciais.forEach((pedidoInicial) => {
+    const index = finalizados.findIndex(
+      (f) => f.codigo === pedidoInicial.codigo && f.nome === pedidoInicial.nome
+    );
+
+    const dataFinal = index !== -1 ? finalizados[index].dataFinal : null;
 
     let total = null;
 
     if (dataFinal) {
-      const inicio = parseDataHora(dataInicio);
+      const inicio = parseDataHora(pedidoInicial.dataInicio);
       const fim = parseDataHora(dataFinal);
       const diffMs = fim - inicio;
       const diffMinutos = Math.round(diffMs / (1000 * 60));
       total = `${diffMinutos} Min`;
+
+      // Evita reuso da finalização
+      finalizados.splice(index, 1);
     }
 
     resultado.push({
-      codigo,
-      nome,
-      dataInicio,
+      codigo: pedidoInicial.codigo,
+      nome: pedidoInicial.nome,
+      dataInicio: pedidoInicial.dataInicio,
       dataFinal,
       total,
     });
-  }
+  });
 
   console.log(resultado);
   return resultado;
+};
+
+export const calcularMediaMinutos = (pedidos) => {
+  if (!pedidos.length) return "0min";
+
+  const totais = pedidos.map((p) => {
+    if (!p.total) return 0; // garante que não vai chamar .match em null
+    const match = p.total.match(/\d+/);
+    return match ? parseInt(match[0]) : 0;
+  });
+
+  const soma = totais.reduce((acc, min) => acc + min, 0);
+  const media = soma / pedidos.length;
+
+  const horas = Math.floor(media / 60);
+  const minutos = Math.round(media % 60);
+
+  return horas > 0 ? `${horas}h ${minutos}min` : `${minutos}min`;
+};
+
+export const pedidoMaisDemorado = (pedidos) => {
+  if (!pedidos || pedidos.length === 0) return null;
+
+  return pedidos.reduce((maior, atual) => {
+    const duracaoMaior = parseInt(maior.total?.trim()) || 0;
+    const duracaoAtual = parseInt(atual.total?.trim()) || 0;
+
+    return duracaoAtual > duracaoMaior ? atual : maior;
+  });
 };
