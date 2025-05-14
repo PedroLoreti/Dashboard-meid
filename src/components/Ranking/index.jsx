@@ -62,7 +62,7 @@ export const Ranking = () => {
 
         <div className={styles.podioContainer}>
           {top3.map((item, index) => {
-            const positions = [0, 1, 2];
+            const positions = [0, 1, 2]; // posição visual: 2°, 1°, 3°
             const pos = positions[index];
 
             return (
@@ -85,6 +85,7 @@ export const Ranking = () => {
           })}
         </div>
 
+        {/* RESTANTE DA LISTA */}
         <ul className={styles.containerList}>
           {rest.map((item, index) => (
             <RankingCard key={index + 3} item={item} index={index + 3} />

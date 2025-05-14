@@ -1,6 +1,9 @@
 export const useFilterFind = (dataFiltred = [], pedidoFinalizado = []) => {
   const pedidosIniciais = [];
 
+  dataFiltred = Array.isArray(dataFiltred) ? dataFiltred : [];
+  pedidoFinalizado = Array.isArray(pedidoFinalizado) ? pedidoFinalizado : [];
+
   dataFiltred.forEach((pedido) => {
     const nome = pedido[1];
     const dataInicio = pedido[0];
@@ -34,7 +37,6 @@ export const useFilterFind = (dataFiltred = [], pedidoFinalizado = []) => {
   });
 
   const resultado = [];
-
 
   pedidosIniciais.forEach((pedidoInicial) => {
     const index = finalizados.findIndex(
@@ -71,7 +73,7 @@ export const calcularMediaMinutos = (pedidos) => {
   if (!pedidos.length) return "0min";
 
   const totais = pedidos.map((p) => {
-    if (!p.total) return 0; 
+    if (!p.total) return 0;
     const match = p.total.match(/\d+/);
     return match ? parseInt(match[0]) : 0;
   });
