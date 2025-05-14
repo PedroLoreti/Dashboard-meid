@@ -9,6 +9,8 @@ const usePedidoCount = (data, filterDate) => {
     const countPedidos = () => {
       const count = {};
 
+      if (!Array.isArray(data)) return;
+
       data.forEach((item) => {
         const pedidoDate = item[0];
         const [datePart] = pedidoDate.split(" ");
@@ -35,7 +37,6 @@ const usePedidoCount = (data, filterDate) => {
 };
 
 export default usePedidoCount;
-
 
 export const useContagemPedidosMes = (mes) => {
   const { pedidosEndList } = useContext(PedidoEndContext);
