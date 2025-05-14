@@ -137,9 +137,11 @@
     padding: 2.5rem;
     min-height: 320px;
 
+    height: 400px;
+
     img {
-      width: 140px;
-      height: 140px;
+      width: clamp(70px, 6vw, 130px);
+      height: clamp(70px, 6vw, 130px);
     }
 
     .paragraph {
@@ -160,6 +162,7 @@
     max-width: 400px;
     min-height: 380px;
     margin-top: 50px;
+    height: 400px;
 
     img {
       width: 180px;
