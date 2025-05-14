@@ -14,10 +14,10 @@ export const Header = ({ toggleTheme }) => {
   return (
     <header className={styles.header}>
       <img src={logoClass} alt="Logo" onClick={() => navigate("/")} />
-      <label class="ui-switch">
+      <label className="ui-switch">
         <input type="checkbox" onClick={toggleTheme} />
-        <div class="slider">
-          <div class="circle"></div>
+        <div className="slider">
+          <div className="circle"></div>
         </div>
       </label>
     </header>

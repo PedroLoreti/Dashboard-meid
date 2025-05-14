@@ -9,6 +9,35 @@
 .containerButton {
   display: flex;
   gap: 3rem;
-  margin: 10px;
+  margin: 0 10px;
+}
+
+.button {
+  padding: clamp(0.8rem, 0.5vw + 0.4rem, 1rem) clamp(1.25rem, 0.952rem + 1.29vw, 2.5rem);
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  font-weight: 700;
+  transition: transform 0.3s ease, background-color 0.5s ease, box-shadow 0.5s ease, color 0.5s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  background-color: #44a246;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #44a246 0px 7px 29px 0px;
+}
+
+@media (max-width: 520px) {
+  .containerButton {
+    display: flex;
+    flex-direction: column;
+  }
 }
 

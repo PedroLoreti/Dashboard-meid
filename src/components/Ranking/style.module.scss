@@ -1,11 +1,27 @@
 .containerList {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.5rem;
   align-items: center;
   margin: 50px 0 100px 0;
+  width: clamp(16rem, 24.774vw + 10.271rem, 40rem);
+  padding-inline: 1rem;
+
+  @media (min-width: 2300px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    width: 100%;
+    max-width: 2000px;
+    justify-items: center;
+  }
 }
 
+.datepicker {
+  background-color: white;
+  border-radius: 4px;
+  font-size: 18px;
+}
 
 .containerDiv {
   display: flex;
@@ -18,21 +34,172 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: clamp(15.625rem, 11.574rem + 21.605vw, 37.5rem);
+  width: 100%;
 }
 
 .titleRanking {
-  font-size: clamp(1.5rem, 1.315rem + 0.988vw, 2.5rem);
-  font-family: "Roboto Mono", monospace;
+  font-size: clamp(2rem, 4vw, 4rem);
+  color: white;
   text-align: center;
+  margin-bottom: 2rem;
 }
-.containerDate {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 
-  label {
-    font-size: clamp(0.875rem, 0.806rem + 0.37vw, 1.25rem);
+.podioContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: end;
+  margin-top: 4rem;
+  padding-inline: 2rem;
+
+  @media (min-width: 1920px) {
+    gap: 4rem;
+    padding-inline: 6rem;
+  }
+
+  @media (min-width: 2300px) {
+    gap: 6rem;
+    padding-inline: 10rem;
   }
 }
 
+.podioCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 2rem;
+  width: clamp(6rem, 2vw + 6rem, 12rem);
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  min-height: 260px;
+  transition: transform 0.3s ease;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #f9f9f9, #eaeaea);
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  img {
+    width: clamp(70px, 6vw, 130px);
+    height: clamp(70px, 6vw, 130px);
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+  }
+
+  .paragraph {
+    margin-top: 0.5rem;
+    font-size: clamp(1rem, 1.5vw, 1.6rem);
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+  }
+
+  .numPedidos {
+    font-size: clamp(1.3rem, 2vw, 2.2rem);
+    font-weight: 700;
+    margin-top: 0.5rem;
+  }
+
+  .position {
+    font-size: clamp(1.3rem, 2.5vw, 2.6rem);
+    font-weight: 800;
+    position: absolute;
+    align-self: center;
+    top: -40px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  }
+
+  &.pos0 {
+    background: linear-gradient(145deg, #fff7c4, #ffe85c);
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+  }
+
+  &.pos1 {
+    background: linear-gradient(145deg, #f0f0f0, #d4d4d4);
+    border: 2px solid #c0c0c0;
+  }
+
+  &.pos2 {
+    background: linear-gradient(145deg, #e8c7a1, #cd7f32);
+    border: 2px solid #b87333;
+  }
+
+  @media (min-width: 1920px) {
+    padding: 2.5rem;
+    min-height: 320px;
+
+    height: 400px;
+
+    img {
+      width: clamp(70px, 6vw, 130px);
+      height: clamp(70px, 6vw, 130px);
+    }
+
+    .paragraph {
+      font-size: 1.8rem;
+    }
+
+    .numPedidos {
+      font-size: 2.5rem;
+    }
+
+    .position {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (min-width: 2300px) {
+    width: 100%;
+    max-width: 400px;
+    min-height: 380px;
+    margin-top: 50px;
+    height: 400px;
+
+    img {
+      width: 180px;
+      height: 180px;
+    }
+
+    .paragraph {
+      font-size: 2rem;
+    }
+
+    .numPedidos {
+      font-size: 2.8rem;
+    }
+
+    .position {
+      font-size: 3rem;
+      top: -60px;
+    }
+  }
+}
+
+.pos0 {
+  order: 2;
+  min-height: 320px;
+}
+.pos1 {
+  order: 1;
+  min-height: 260px;
+}
+.pos2 {
+  order: 3;
+  min-height: 240px;
+}
+
+.background-white {
+  background-color: #ffffff;
+}
+.background-black {
+  background-color: #1e1e1e;
+}
