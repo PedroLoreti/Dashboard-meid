@@ -32,6 +32,16 @@ export const RegistroSearch = () => {
     : "border-container-black";
   const border = isDarkMode ? "border-white" : "border-black";
 
+  const getMinutes = (total) => {
+    if (!total || typeof total !== "string") return 0;
+    const match = total.match(/(\d+)/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
+
+  const pedidoOrdenado = [...pedidoComplete].sort(
+    (a, b) => getMinutes(b.total) - getMinutes(a.total)
+  );
+
   return (
     <div className={styles.containerSearch}>
       <h2 className={styles.titleRegistro + " " + titleClass}>
@@ -59,7 +69,7 @@ export const RegistroSearch = () => {
           <div>Total</div>
         </div>
         <div className={styles.body}>
-          {pedidoComplete.map((item, index) => (
+          {pedidoOrdenado.map((item, index) => (
             <div
               key={index}
               className={styles.row + " " + titleClass + " " + border}
