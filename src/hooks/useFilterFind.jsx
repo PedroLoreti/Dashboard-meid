@@ -1,7 +1,6 @@
 export const useFilterFind = (dataFiltred = [], pedidoFinalizado = []) => {
   const pedidosIniciais = [];
 
-  // Coleta todos os pedidos iniciados
   dataFiltred.forEach((pedido) => {
     const nome = pedido[1];
     const dataInicio = pedido[0];
@@ -22,7 +21,6 @@ export const useFilterFind = (dataFiltred = [], pedidoFinalizado = []) => {
 
   const finalizados = [];
 
-  // Coleta todos os pedidos finalizados (agora com nome também)
   pedidoFinalizado.forEach((pedido) => {
     const dataFinal = pedido[0];
     const nome = pedido[1];
@@ -37,7 +35,7 @@ export const useFilterFind = (dataFiltred = [], pedidoFinalizado = []) => {
 
   const resultado = [];
 
-  // Associa apenas pedidos com mesmo código e mesmo nome
+
   pedidosIniciais.forEach((pedidoInicial) => {
     const index = finalizados.findIndex(
       (f) => f.codigo === pedidoInicial.codigo && f.nome === pedidoInicial.nome
@@ -54,7 +52,6 @@ export const useFilterFind = (dataFiltred = [], pedidoFinalizado = []) => {
       const diffMinutos = Math.round(diffMs / (1000 * 60));
       total = `${diffMinutos} Min`;
 
-      // Evita reuso da finalização
       finalizados.splice(index, 1);
     }
 
@@ -67,7 +64,6 @@ export const useFilterFind = (dataFiltred = [], pedidoFinalizado = []) => {
     });
   });
 
-  console.log(resultado);
   return resultado;
 };
 
@@ -75,7 +71,7 @@ export const calcularMediaMinutos = (pedidos) => {
   if (!pedidos.length) return "0min";
 
   const totais = pedidos.map((p) => {
-    if (!p.total) return 0; // garante que não vai chamar .match em null
+    if (!p.total) return 0; 
     const match = p.total.match(/\d+/);
     return match ? parseInt(match[0]) : 0;
   });

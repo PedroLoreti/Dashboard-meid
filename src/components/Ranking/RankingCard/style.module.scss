@@ -51,14 +51,14 @@ li {
 
 .paragraph,
 .numPedidos {
-  font-size: clamp(0.8rem, 1.5vw, 1.3rem); /* Fonte ajustável */
+  font-size: clamp(0.8rem, 1.5vw, 1.3rem); 
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   color: #333;
   max-width: 100%;
   text-align: center;
-  white-space: normal; /* Permite quebra de linha */
-  overflow: visible; /* Deixa o texto visível */ /* Quebra em palavras longas */
+  white-space: normal;
+  overflow: visible;
   line-height: 1.2;
   max-width: 100%;
 }
@@ -67,13 +67,11 @@ li {
   flex-shrink: 0;
 }
 
-// Tema claro com contraste maior
 .backgroundWhite {
   background: linear-gradient(to right, #ffffff, #eaeaea);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-// Tema escuro com contraste maior
 .backgroundBlack {
   background: linear-gradient(to right, #1f1f1f, #0e0e0e);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.5);
@@ -87,7 +85,7 @@ li {
   color: #1e1e1e;
 }
 
-// Cores por desempenho
+
 .green {
   color: #27ae60;
 }
@@ -96,7 +94,7 @@ li {
   color: #e74c3c;
 }
 
-// Animação de entrada
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -108,7 +106,6 @@ li {
   }
 }
 
-// Responsividade para Full HD (TVs de 1920px ou mais)
 @media (min-width: 1920px) {
   .containerCard {
     padding: 32px;
@@ -134,7 +131,7 @@ li {
   }
 }
 
-// Responsividade para resoluções 4K e maiores
+
 @media (min-width: 2300px) {
   .containerCard {
     flex-direction: column;

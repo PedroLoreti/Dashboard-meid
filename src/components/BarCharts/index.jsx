@@ -7,7 +7,6 @@ import styles from "./style.module.scss";
 export const BarChartExample = ({ pedidos, theme = "light" }) => {
   const [data, setData] = useState([]);
 
-  // Define cor com base no tema
   const textColor = theme === "dark" ? "#FFFFFF" : "#000000";
   const tooltipBg = theme === "dark" ? "#1f1f1f" : "#f9f9f9";
 

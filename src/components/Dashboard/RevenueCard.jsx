@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./style.module.scss";
 import { useTheme } from "../../providers/ThemeContext";
 
-// Ícones do Lucide (você pode trocar por react-icons se quiser)
+
 import { BarChart, Clock, Timer } from "lucide-react";
 
 const iconMap = {

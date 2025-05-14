@@ -1,17 +1,15 @@
 import { useState, useMemo } from "react";
 import styles from "./style.module.scss";
-import { useContagemPedidosMes } from "../../hooks/usePedidoCount"; // Importando o hook
+import { useContagemPedidosMes } from "../../hooks/usePedidoCount";
 
 const Modal = ({ isOpen, onClose, item}) => {
   if (!isOpen) return null;
 
-  const nome = item[0]; // Assume que 'item' é um array, e o nome está na primeira posição
-  const [mesSelecionado, setMesSelecionado] = useState(new Date().getMonth() + 1); // Mês atual como valor inicial
+  const nome = item[0];
+  const [mesSelecionado, setMesSelecionado] = useState(new Date().getMonth() + 1); 
 
-  // Usando o hook para obter a contagem de pedidos no mês selecionado
   const { contagem } = useContagemPedidosMes(mesSelecionado);
 
-  // Obter o total de pedidos para o funcionário específico
   const totalPedidos = contagem[nome] || 0;
 
   const imageUrl = `https://res.cloudinary.com/dilivah9m/image/upload/${nome.replace(
@@ -23,7 +21,7 @@ const Modal = ({ isOpen, onClose, item}) => {
 
   const handleMesChange = (e) => {
     const novoMes = parseInt(e.target.value, 10);
-    setMesSelecionado(novoMes); // Atualiza o mês selecionado
+    setMesSelecionado(novoMes);
   };
 
   return (

@@ -1,12 +1,11 @@
-// RankingCard.js
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./style.module.scss";
 import { useTheme } from "../../../providers/ThemeContext";
-import Modal from "../../Modal/Modal"; // Importe o modal
+import Modal from "../../Modal/Modal"; 
 
 export const RankingCard = ({ item, index }) => {
   const { isDarkMode } = useTheme();
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar o modal
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const titleClass = isDarkMode ? styles.titleWhite : styles.titleBlack;
   const borderClass = isDarkMode
@@ -21,23 +20,20 @@ export const RankingCard = ({ item, index }) => {
   const fallbackImage =
     "https://res.cloudinary.com/dilivah9m/image/upload/Icon_unknown.jpg";
 
-  // Define preposições comuns
   const preposicoes = ["da", "de", "dos", "das", "do", "a", "ao", "na", "no"];
 
-  // Divide o nome em palavras
   const nomeArray = item[0].split(" ");
 
-  // Verifica se a segunda palavra é uma preposição
   const nomeExibido = preposicoes.includes(nomeArray[1]?.toLowerCase())
     ? nomeArray.slice(0, 3).join(" ")
     : nomeArray.slice(0, 2).join(" ");
 
   const handleCardClick = () => {
-    setIsModalOpen(true); // Abre o modal ao clicar no card
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // Fecha o modal
+    setIsModalOpen(false);
   };
 
   return (
@@ -54,7 +50,7 @@ export const RankingCard = ({ item, index }) => {
             className={styles.imagem}
             src={imageUrl}
             onError={(e) => {
-              e.target.onerror = null; // previne loop infinito
+              e.target.onerror = null;
               e.target.src = fallbackImage;
             }}
           />
@@ -65,7 +61,6 @@ export const RankingCard = ({ item, index }) => {
         </div>
       </li>
 
-      {/* Modal com as informações do colaborador */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} item={item} />
     </>
   );

@@ -7,7 +7,6 @@
   z-index: 1;
 }
 
-// Tema Claro
 .light {
   .searchWrapper {
     background-color: #ffffff;
@@ -20,7 +19,6 @@
   }
 }
 
-// Tema Escuro
 .dark {
   .searchWrapper {
     background-color: #1f1f1f;
@@ -40,7 +38,6 @@
   z-index: 2;
   transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 
-  // Sombras estilo "neumorphism moderno"
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.04),
     0 4px 12px rgba(0, 0, 0, 0.08);

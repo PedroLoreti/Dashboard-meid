@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PedidoEndContext } from "../providers/PedidosEnd"; // Ajuste o caminho conforme sua estrutura
+import { PedidoEndContext } from "../providers/PedidosEnd";
 import { useContext } from "react";
 
 const usePedidoCount = (data, filterDate) => {
@@ -46,7 +46,7 @@ export const useContagemPedidosMes = (mes) => {
 
     const pedidosPorFuncionario = pedidosEndList.reduce((acc, pedido) => {
       const dataFinal = new Date(pedido.dataFinal);
-      const mesPedido = dataFinal.getMonth() + 1; // Mês 1-12
+      const mesPedido = dataFinal.getMonth() + 1;
       const nomeFuncionario = pedido.nome;
 
       if (mesPedido === mes) {

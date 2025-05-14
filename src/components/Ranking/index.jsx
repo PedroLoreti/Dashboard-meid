@@ -18,17 +18,13 @@ export const Ranking = () => {
   const pedidoCount = usePedidoCount(pedidosEndList, dataFormatada);
   const titleClass = isDarkMode ? "title-white" : "title-black";
 
-  // Ordena os pedidos do maior para o menor
   const pedidoSorted = Object.entries(pedidoCount).sort((a, b) => b[1] - a[1]);
 
-  // Separa top 3 e o restante
   const top3 = pedidoSorted.slice(0, 3);
   const rest = pedidoSorted.slice(3);
 
-  // Define preposições comuns
   const preposicoes = ["da", "de", "dos", "das", "do", "a", "ao", "na", "no"];
 
-  // Função para extrair o nome a ser exibido
   const getNomeExibido = (nome) => {
     const nomeArray = nome.split(" ");
     return preposicoes.includes(nomeArray[1]?.toLowerCase())
@@ -64,10 +60,9 @@ export const Ranking = () => {
           />
         </div>
 
-        {/* PÓDIO */}
         <div className={styles.podioContainer}>
           {top3.map((item, index) => {
-            const positions = [0, 1, 2]; // posição visual: 2°, 1°, 3°
+            const positions = [0, 1, 2];
             const pos = positions[index];
 
             return (
@@ -90,7 +85,6 @@ export const Ranking = () => {
           })}
         </div>
 
-        {/* RESTANTE DA LISTA */}
         <ul className={styles.containerList}>
           {rest.map((item, index) => (
             <RankingCard key={index + 3} item={item} index={index + 3} />
