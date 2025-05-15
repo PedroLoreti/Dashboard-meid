@@ -1,11 +1,9 @@
 import { useState } from "react";
 import styles from "./style.module.scss";
 import { useTheme } from "../../../providers/ThemeContext";
-import Modal from "../../Modal/Modal"; 
 
 export const RankingCard = ({ item, index }) => {
   const { isDarkMode } = useTheme();
-  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const titleClass = isDarkMode ? styles.titleWhite : styles.titleBlack;
   const borderClass = isDarkMode
@@ -28,21 +26,10 @@ export const RankingCard = ({ item, index }) => {
     ? nomeArray.slice(0, 3).join(" ")
     : nomeArray.slice(0, 2).join(" ");
 
-  const handleCardClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <li>
-        <div
-          className={`${borderClass} ${styles.containerCard}`}
-          onClick={handleCardClick}
-        >
+        <div className={`${borderClass} ${styles.containerCard}`}>
           <span className={`${titleClass} ${styles.position}`}>
             {index + 1}°
           </span>
@@ -50,7 +37,7 @@ export const RankingCard = ({ item, index }) => {
             className={styles.imagem}
             src={imageUrl}
             onError={(e) => {
-              e.target.onerror = null;
+              e.target.onerror = null; // previne loop infinito
               e.target.src = fallbackImage;
             }}
           />
@@ -60,8 +47,6 @@ export const RankingCard = ({ item, index }) => {
           </span>
         </div>
       </li>
-
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} item={item} />
     </>
   );
 };

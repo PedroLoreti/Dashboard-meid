@@ -33,8 +33,11 @@ export const Ranking = () => {
   };
 
   const getImageUrl = (name) =>
-    `https://res.cloudinary.com/dilivah9m/image/upload/${name.replace(/ /g, "_")}.jpg`;
+  
+  `https://res.cloudinary.com/dilivah9m/image/upload/${name.replace(/ /g, "_")}.jpg`;
   const fallbackImage = "https://res.cloudinary.com/dilivah9m/image/upload/Icon_unknown.jpg";
+
+  
 
   const handleChange = (date) => {
     setDataPedido(date);
