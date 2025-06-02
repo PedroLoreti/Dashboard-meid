@@ -12,16 +12,22 @@ import { useTheme } from "../../providers/ThemeContext";
 export const Ranking = () => {
   const { isDarkMode } = useTheme();
   const { pedidosEndList } = useContext(PedidoEndContext);
-  const [dataPedido, setDataPedido] = useState(null);
-  const dataFormatada = dataPedido ? format(dataPedido, "dd/MM/yyyy") : null;
+
+  const [dataDia, setDataDia] = useState(null);
+  const [dataMes, setDataMes] = useState(null);
+
+  let dataFormatada = null;
+  if (dataDia) {
+    dataFormatada = format(dataDia, "yyyy-MM-dd");
+  } else if (dataMes) {
+    dataFormatada = format(dataMes, "yyyy-MM");
+  }
 
   const pedidoCount = usePedidoCount(pedidosEndList, dataFormatada);
   const titleClass = isDarkMode ? "title-white" : "title-black";
 
-  const pedidoSorted = Object.entries(pedidoCount).sort((a, b) => b[1] - a[1]);
-
-  const top3 = pedidoSorted.slice(0, 3);
-  const rest = pedidoSorted.slice(3);
+  const top3 = pedidoCount.slice(0, 3);
+  const rest = pedidoCount.slice(3);
 
   const preposicoes = ["da", "de", "dos", "das", "do", "a", "ao", "na", "no"];
 
@@ -33,33 +39,54 @@ export const Ranking = () => {
   };
 
   const getImageUrl = (name) =>
-  
-  `https://res.cloudinary.com/dilivah9m/image/upload/${name.replace(/ /g, "_")}.jpg`;
-  const fallbackImage = "https://res.cloudinary.com/dilivah9m/image/upload/Icon_unknown.jpg";
+    `https://res.cloudinary.com/dilivah9m/image/upload/${name.replace(
+      / /g,
+      "_"
+    )}.jpg`;
+  const fallbackImage =
+    "https://res.cloudinary.com/dilivah9m/image/upload/Icon_unknown.jpg";
 
-  
+  const handleChangeDia = (date) => {
+    setDataDia(date);
+    setDataMes(null); // limpa mês
+  };
 
-  const handleChange = (date) => {
-    setDataPedido(date);
+  const handleChangeMes = (date) => {
+    setDataMes(date);
+    setDataDia(null); // limpa dia
   };
 
   return (
     <div className={styles.containerDiv}>
-      <h1 className={`${titleClass} ${styles.titleRanking}`}>Ranking Pedidos</h1>
+      <h1 className={`${titleClass} ${styles.titleRanking}`}>
+        Ranking Pedidos
+      </h1>
 
       <div className={styles.containerMain}>
         <div className={styles.containerDate}>
           <label htmlFor="date" className={`${titleClass} ${styles.label}`}>
-            Data:
+            Dia:
           </label>
-
           <DatePicker
-            selected={dataPedido}
-            onChange={handleChange}
+            selected={dataDia}
+            onChange={handleChangeDia}
             dateFormat="dd/MM/yyyy"
             locale={ptBR}
             className="input-search"
             placeholderText="dd/mm/yyyy"
+          />
+
+          <label htmlFor="month" className={`${titleClass} ${styles.label}`}>
+            Mês:
+          </label>
+          <DatePicker
+            selected={dataMes}
+            onChange={handleChangeMes}
+            dateFormat="MM/yyyy"
+            showMonthYearPicker
+            locale={ptBR}
+            className="input-search"
+            placeholderText="mm/yyyy"
           />
         </div>
 
@@ -69,20 +96,27 @@ export const Ranking = () => {
             const pos = positions[index];
 
             return (
-              <div key={index} className={`${styles.podioCard} ${styles[`pos${pos}`]}`}>
-                <span className={`${titleClass} ${styles.position}`}>{[1, 2, 3][index]}°</span>
+              <div
+                key={index}
+                className={`${styles.podioCard} ${styles[`pos${pos}`]}`}
+              >
+                <span className={`${titleClass} ${styles.position}`}>
+                  {[1, 2, 3][index]}°
+                </span>
                 <img
                   className={styles.imagem}
-                  src={getImageUrl(item[0])}
+                  src={getImageUrl(item.nome)}
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = fallbackImage;
                   }}
                 />
                 <p className={`${titleClass} ${styles.paragraph}`}>
-                  {getNomeExibido(item[0])}
+                  {getNomeExibido(item.nome)}
                 </p>
-                <span className={`${styles.numPedidos}`}>{item[1]}</span>
+                <span className={`${styles.numPedidos}`}>
+                  {item.totalPedidos}
+                </span>
               </div>
             );
           })}
@@ -91,7 +125,7 @@ export const Ranking = () => {
         {/* RESTANTE DA LISTA */}
         <ul className={styles.containerList}>
           {rest.map((item, index) => (
-            <RankingCard key={index + 3} item={item} index={index + 3} />
+            <RankingCard key={index + 3} item={item} index={index + 3} isMonthly={!!dataMes} />
           ))}
         </ul>
       </div>

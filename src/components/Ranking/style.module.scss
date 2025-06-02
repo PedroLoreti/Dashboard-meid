@@ -30,6 +30,14 @@
   gap: 3rem;
 }
 
+.containerDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
 .containerMain {
   display: flex;
   flex-direction: column;
@@ -95,7 +103,7 @@
 
   .paragraph {
     margin-top: 0.5rem;
-    font-size: clamp(1rem, 1.5vw, 1.6rem);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
     font-weight: 700;
     color: #222;
     text-align: center;
@@ -203,3 +211,4 @@
 .background-black {
   background-color: #1e1e1e;
 }
+
