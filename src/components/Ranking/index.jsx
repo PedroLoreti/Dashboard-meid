@@ -90,44 +90,52 @@ export const Ranking = () => {
           />
         </div>
 
-        <div className={styles.podioContainer}>
-          {top3.map((item, index) => {
-            const positions = [0, 1, 2]; // posição visual: 2°, 1°, 3°
-            const pos = positions[index];
+        {dataFormatada && (
+          <>
+            <div className={styles.podioContainer}>
+              {top3.map((item, index) => {
+                const positions = [0, 1, 2]; // posição visual: 2°, 1°, 3°
+                const pos = positions[index];
 
-            return (
-              <div
-                key={index}
-                className={`${styles.podioCard} ${styles[`pos${pos}`]}`}
-              >
-                <span className={`${titleClass} ${styles.position}`}>
-                  {[1, 2, 3][index]}°
-                </span>
-                <img
-                  className={styles.imagem}
-                  src={getImageUrl(item.nome)}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = fallbackImage;
-                  }}
+                return (
+                  <div
+                    key={index}
+                    className={`${styles.podioCard} ${styles[`pos${pos}`]}`}
+                  >
+                    <span className={`${titleClass} ${styles.position}`}>
+                      {[1, 2, 3][index]}°
+                    </span>
+                    <img
+                      className={styles.imagem}
+                      src={getImageUrl(item.nome)}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = fallbackImage;
+                      }}
+                    />
+                    <p className={`${titleClass} ${styles.paragraph}`}>
+                      {getNomeExibido(item.nome)}
+                    </p>
+                    <span className={`${styles.numPedidos}`}>
+                      {item.totalPedidos}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <ul className={styles.containerList}>
+              {rest.map((item, index) => (
+                <RankingCard
+                  key={index + 3}
+                  item={item}
+                  index={index + 3}
+                  isMonthly={!!dataMes}
                 />
-                <p className={`${titleClass} ${styles.paragraph}`}>
-                  {getNomeExibido(item.nome)}
-                </p>
-                <span className={`${styles.numPedidos}`}>
-                  {item.totalPedidos}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* RESTANTE DA LISTA */}
-        <ul className={styles.containerList}>
-          {rest.map((item, index) => (
-            <RankingCard key={index + 3} item={item} index={index + 3} isMonthly={!!dataMes} />
-          ))}
-        </ul>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   );
