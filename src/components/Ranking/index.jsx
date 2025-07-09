@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { PedidoEndContext } from "../../providers/PedidosEnd";
-import usePedidoCount from "../../hooks/usePedidoCount";
+import { PedidoContext } from "../../providers/PedidoContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
@@ -8,9 +8,12 @@ import ptBR from "date-fns/locale/pt-BR";
 import { RankingCard } from "./RankingCard";
 import styles from "./style.module.scss";
 import { useTheme } from "../../providers/ThemeContext";
+import { useFilterRegistro } from "../../hooks/useFilterRegistro";
+import { useFilterFind } from "../../hooks/useFilterFind";
 
 export const Ranking = () => {
   const { isDarkMode } = useTheme();
+  const { pedidosList } = useContext(PedidoContext);
   const { pedidosEndList } = useContext(PedidoEndContext);
 
   const [dataDia, setDataDia] = useState(null);
@@ -18,16 +21,35 @@ export const Ranking = () => {
 
   let dataFormatada = null;
   if (dataDia) {
-    dataFormatada = format(dataDia, "yyyy-MM-dd");
+    dataFormatada = format(dataDia, "dd/MM/yyyy"); // usar esse formato para compatibilidade com seu filtro
   } else if (dataMes) {
-    dataFormatada = format(dataMes, "yyyy-MM");
+    dataFormatada = format(dataMes, "MM/yyyy");
   }
 
-  const pedidoCount = usePedidoCount(pedidosEndList, dataFormatada);
-  const titleClass = isDarkMode ? "title-white" : "title-black";
+  // pega os pedidos filtrados por data
+  const pedidosFiltrados = useFilterRegistro(pedidosList, dataFormatada, "");
 
-  const top3 = pedidoCount.slice(0, 3);
-  const rest = pedidoCount.slice(3);
+  // une pedidos iniciados com finalizados
+  const pedidosCompletos = useFilterFind(pedidosFiltrados, pedidosEndList);
+
+  // contagem por nome
+  const pedidoCount = pedidosCompletos.reduce((acc, pedido) => {
+    const nome = pedido.nome;
+    if (!acc[nome]) {
+      acc[nome] = 0;
+    }
+    acc[nome]++;
+    return acc;
+  }, {});
+
+  const ranking = Object.entries(pedidoCount)
+    .map(([nome, totalPedidos]) => ({ nome, totalPedidos }))
+    .sort((a, b) => b.totalPedidos - a.totalPedidos);
+
+  const top3 = ranking.slice(0, 3);
+  const rest = ranking.slice(3);
+
+  const titleClass = isDarkMode ? "title-white" : "title-black";
 
   const preposicoes = ["da", "de", "dos", "das", "do", "a", "ao", "na", "no"];
 
@@ -39,28 +61,22 @@ export const Ranking = () => {
   };
 
   const getImageUrl = (name) =>
-    `https://res.cloudinary.com/dilivah9m/image/upload/${name.replace(
-      / /g,
-      "_"
-    )}.jpg`;
-  const fallbackImage =
-    "https://res.cloudinary.com/dilivah9m/image/upload/Icon_unknown.jpg";
+    `https://res.cloudinary.com/dilivah9m/image/upload/${name.replace(/ /g, "_")}.jpg`;
+  const fallbackImage = "https://res.cloudinary.com/dilivah9m/image/upload/Icon_unknown.jpg";
 
   const handleChangeDia = (date) => {
     setDataDia(date);
-    setDataMes(null); // limpa mês
+    setDataMes(null);
   };
 
   const handleChangeMes = (date) => {
     setDataMes(date);
-    setDataDia(null); // limpa dia
+    setDataDia(null);
   };
 
   return (
     <div className={styles.containerDiv}>
-      <h1 className={`${titleClass} ${styles.titleRanking}`}>
-        Ranking Pedidos
-      </h1>
+      <h1 className={`${titleClass} ${styles.titleRanking}`}>Ranking Pedidos</h1>
 
       <div className={styles.containerMain}>
         <div className={styles.containerDate}>
@@ -94,7 +110,7 @@ export const Ranking = () => {
           <>
             <div className={styles.podioContainer}>
               {top3.map((item, index) => {
-                const positions = [0, 1, 2]; // posição visual: 2°, 1°, 3°
+                const positions = [0, 1, 2];
                 const pos = positions[index];
 
                 return (
