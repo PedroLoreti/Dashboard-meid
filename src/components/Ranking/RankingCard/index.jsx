@@ -1,7 +1,7 @@
 import styles from "./style.module.scss";
 import { useTheme } from "../../../providers/ThemeContext";
 
-export const RankingCard = ({ item, index, isMonthly }) => {
+export const RankingCard = ({ item, index, isMonthly, isWeekly }) => {
   const { isDarkMode } = useTheme();
 
   const titleClass = isDarkMode ? styles.titleWhite : styles.titleBlack;
@@ -10,7 +10,11 @@ export const RankingCard = ({ item, index, isMonthly }) => {
     : styles.backgroundWhite;
 
   // Decide regra de cor
-  const mediaColor = isMonthly
+  const mediaColor = isWeekly
+    ? item.totalPedidos > 150
+      ? "green"
+      : "red"
+    : isMonthly
     ? item.totalPedidos >= 660
       ? "green"
       : "red"
@@ -36,9 +40,7 @@ export const RankingCard = ({ item, index, isMonthly }) => {
   return (
     <li>
       <div className={`${borderClass} ${styles.containerCard}`}>
-        <span className={`${titleClass} ${styles.position}`}>
-          {index + 1}°
-        </span>
+        <span className={`${titleClass} ${styles.position}`}>{index + 1}°</span>
         <img
           className={styles.imagem}
           src={imageUrl}

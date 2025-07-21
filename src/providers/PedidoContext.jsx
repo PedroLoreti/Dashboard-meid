@@ -29,7 +29,7 @@ export const PedidoProvider = ({ children }) => {
     const intervalId = setInterval(getPedidos, 5000);
 
     return () => clearInterval(intervalId);
-  }, [pedidosList]);
+  }, []);
 
   return (
     <PedidoContext.Provider value={{ pedidosList }}>

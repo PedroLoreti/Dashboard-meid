@@ -24,10 +24,23 @@ const usePedidoCount = (data, filterDate) => {
 
       if (!filterDate) {
         incluir = true;
-      } else if (filterDate.length === 10) {
+      } else if (typeof filterDate === "string" && filterDate.length === 10) {
+        // Dia
         incluir = formattedDate === filterDate;
-      } else if (filterDate.length === 7) {
+      } else if (typeof filterDate === "string" && filterDate.length === 7) {
+        // Mês
         incluir = formattedMonth === filterDate;
+      } else if (
+        typeof filterDate === "object" &&
+        filterDate.start &&
+        filterDate.end
+      ) {
+        // Semana
+        const dataItem = new Date(`${formattedDate}T00:00:00`);
+        const dataStart = new Date(`${filterDate.start}T00:00:00`);
+        const dataEnd = new Date(`${filterDate.end}T23:59:59`);
+
+        incluir = dataItem >= dataStart && dataItem <= dataEnd;
       }
 
       if (incluir) {
@@ -39,7 +52,6 @@ const usePedidoCount = (data, filterDate) => {
       .map(([nome, totalPedidos]) => ({ nome, totalPedidos }))
       .sort((a, b) => b.totalPedidos - a.totalPedidos);
 
-    console.log("sortedArray final", sortedArray);
     setPedidoCount(sortedArray);
   }, [data, filterDate]);
 
